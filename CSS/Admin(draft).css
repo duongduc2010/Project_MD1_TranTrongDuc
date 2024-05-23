@@ -1,0 +1,122 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root{
+    --color-theme: rgb(255, 91, 106);
+    --background-color: #FFFCFE;
+    }
+
+img{
+    object-fit: cover;
+}
+
+.flex{
+    display: flex;
+} 
+
+a{
+    text-decoration: none;
+}
+
+ul{
+    list-style: none;
+}
+
+table{
+    width: 100%;
+}
+
+.active{
+    background-color: rgba(255, 255, 255, 0.3);
+
+}
+
+td{
+    padding: 5px;
+}
+
+/* MAIN */
+
+.header{
+    width: 46px;
+    background-color: #ccc;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+}
+
+.header i{
+    font-size: 25px;
+}   
+
+.header button{
+    background-color: transparent;
+    border: none;
+}
+
+.header__left{
+    gap: 20px;
+    align-items: center;
+}
+
+.header__right{
+    gap: 20px;
+    justify-content: center;
+    align-items: center;
+}
+
+.avatar{
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+} 
+
+/* MAIN */
+.main{
+    height: 100vh;
+}
+
+.main__nav{
+    background-color: black;
+    width: 250px;
+}
+
+
+.main__nav a{
+    color: white;
+    display: inline-block;
+    width: 100%;
+    padding: 20px;
+}
+
+.main__content{
+    background-color: white;
+    padding: 20px;
+    flex: 1;
+}
+
+.main__content__header{
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.btn-add{
+    background-color: var(--color-theme);
+    border: transparent;
+    cursor: pointer;
+    padding: 10px;
+    color: white;
+}
+
+/* HOVER */
+.main__nav li:hover{
+    background-color: rgba(255, 255, 255, 0.3);
+}
+
+.btn-add:hover{
+    opacity: 0.8;
+}

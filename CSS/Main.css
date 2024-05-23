@@ -1,0 +1,791 @@
+/* IMPORT LAYOUTS */
+@import url(./LAYOUTS/Header.css);
+@import url(./LAYOUTS/Footer.css);
+/* IMPORT BASE */
+@import url(./BASE/Button.css);
+@import url(./BASE/Input.css);
+
+:root{
+--color-theme: rgb(255, 91, 106);
+--background-color: #FFFCFE;
+}
+
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    scrollbar-width: thin;
+    scrollbar-color: var(--color-theme) transparent;
+    color: #142f43;
+}
+
+html{
+    font-family: "Roboto", sans-serif;
+    font-size: 62.5%;
+    background-color: #FFFCFE;
+    line-height: 1.4;
+}
+
+a{
+    text-decoration: none;
+}
+
+ul{
+    list-style: none;
+}
+
+img{
+    object-fit: cover;
+}
+
+.header, .menu, .main{
+    padding: 0 120px;   
+}
+
+.fa-eye, .fa-eye-slash{
+    position: absolute;
+    padding: 10px;
+    font-size: 1.4rem;
+    right: 0;
+    top: 5px;
+}
+
+.swal-wide {
+    font-size: 1.8rem;
+}
+
+.signIn,
+.signUp,
+.overlay,
+.cart-overlay,
+.address-overlay{
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.8);
+    z-index: 1000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* ======== */
+/* MENU */
+
+.menu{
+    padding-top: 140px;
+    margin-bottom: 60px;
+}
+
+.menu__list{
+    display: flex;
+    justify-content: space-between;
+}
+
+.menu__list_item{
+    width: 98px;
+    display: flex;
+    flex-direction: column;
+}
+
+h4{
+    text-align: center;
+    font-size: 1.5rem;
+    font-weight: 500;
+    margin-top: 6px;
+}
+
+
+.menu__list_item >a> img{
+    width: 100%;
+    border-radius: 15px;
+}
+
+.active-menu{
+    border: 4px solid var(--color-theme);
+}
+
+.active-h4{
+    color: var(--color-theme);
+}
+
+.menu__switch{
+    text-align: center;
+    padding: 15px;
+}
+
+.menu__switch span{
+    width: 10px;
+    height: 10px;
+    background-color: var(--color-theme);
+    display: inline-block;
+    cursor: pointer;
+    border-radius: 50%;
+    margin: 0 2px;
+    opacity: 0.5;
+}
+
+.active__switch{
+    opacity: 1 !important;
+}
+
+/* ======== */
+/* MAIN */
+
+.main{
+    margin-bottom: 66px;
+}
+
+.main__wrapped{
+    display: flex;
+    flex-wrap: wrap;
+    row-gap: 30px;
+    column-gap: 10px;
+    justify-content: space-between;
+}
+
+.main__wrapped__item{
+    width: 23%;
+    position: relative;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+    padding-bottom: 75px;
+}
+
+@media (max-width: 390px) {
+    .header, .menu, .main {
+        padding: 0
+    }
+
+    .main__wrapped__item{
+        width: 100%;
+    }
+}
+
+@media (min-width:390px) and (max-width: 720px) {
+    .header, .menu, .main {
+        padding: 0
+    }
+
+    .main__wrapped__item{
+        width: 30%;
+    }
+}
+
+
+.main__wrapped__item__photo{
+    position: relative;
+    /* margin-bottom: 15px; */
+}
+
+.main__wrapped__item__photo > a > img{
+    width: 100%;
+    
+}
+
+.fa-heart{
+    font-size: 2.2rem;
+    position: absolute;
+    right: 5%;
+    top: 100%;  
+    cursor: pointer;  
+}
+
+.red-heart{
+    color: red;
+}
+
+.main__wrapped__item__content{
+    padding: 0 12px;
+}
+
+h3{
+    font-size: 1.7rem;
+    font-weight: 500;
+    margin-bottom: 10px;
+}
+
+.main__wrapped__item__detals{
+    opacity: .7;
+    margin-bottom: 20px;
+    font-size: 1.4rem;
+}
+
+.main__wrapped__item__price p:first-child{
+    color: var(--color-theme);
+    font-weight: 700;
+    font-size: 25px;
+    line-height: 100%;
+    margin-bottom: 5px;
+}
+
+.main__wrapped__item__price p:last-child{
+    background: url("https://www.lotteria.vn/grs-static/images/icon-discount.svg") no-repeat;
+    padding-left: 24px;
+    /* min-height: 20px; */
+}
+
+.main__wrapped__item__price p:last-child span{
+    color: #6B6C6C;
+    text-decoration: line-through;
+    font-size: 1.5rem;
+}
+
+.main__wrapped__item__btn{
+    padding: 10px 0;
+    position: absolute;
+    width: 100%;
+    left: 0;
+    bottom: 0;
+    padding: 10px 12px;
+}
+
+/* ========= */
+/* CART */
+
+.cart-overlay{
+    background-color: rgba(0, 0, 0, 0);
+    justify-content: end;
+    display: none;
+}
+
+.openCart{
+    display: flex;
+}
+
+.cart{
+    position: relative;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    background-color: white;
+    width: 400px;
+    height: 400px;
+    animation: slidein 0.2s linear;
+    display: flex;
+    flex-direction: column;
+
+}
+
+.cart >strong{
+    font-size: 2.6rem;
+    padding: 10px 0 0 15px;
+}
+
+.cart__content{
+    padding: 0 15px;
+    flex: 1;
+    scrollbar-color: blue transparent;
+    overflow-y: auto;
+}
+
+.cart__content__listItem{
+    display: flex;
+    position: relative;
+    padding: 15px 0;
+    border-bottom: 1px solid #eee ;
+}
+
+.img-cart{
+    margin-right: 15px;
+}
+
+.img-cart>a>img{
+    max-width: 100px;
+}
+
+.fa-trash{
+    position: absolute;
+    right: 0;
+    bottom: 28%;
+    padding: 15px;
+    font-size: 1.8rem;
+    cursor: pointer;
+}
+
+.details-cart a{
+    font-size: 1.6rem;
+    font-weight: 500;
+}
+
+.details-cart p{
+    font-size: 1.6rem;
+}
+
+.quantity-group{
+    display: flex;
+    align-items: center;
+}
+
+.quantity-btn{
+    padding: 2px;
+    width: 35px;
+}
+
+.quantity-group > p{
+    margin: 0 5px;
+}
+
+.cart__footer{
+    background-color: white;
+}
+
+.totalPrice{
+    padding: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 1.8rem;
+}
+
+.payment{
+    background-color: var(--color-theme);
+}
+
+.payment a{
+    width: 100%;
+    padding: 10px 0;
+    font-size: 1.6rem;
+    font-weight: 500;
+    color: #fff;
+    cursor: pointer;  
+    display: block;
+    text-align: center;
+    
+}
+
+@keyframes slidein {
+    from{
+        transform: translateX(100%);
+    }
+
+    to{
+        transform: translateX(0);
+    }
+}
+
+/* ==================== */
+/* ACCOUNT INFORMATION */
+.container{
+    display: block;
+    padding-top: 140px;
+    margin-bottom: 46px;
+    margin-left: 120px;
+    margin-right: 120px;
+}
+.main__account{
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    display: flex;
+    border-radius: 10px;
+
+}
+
+.main__account__left{
+    background-color: var(--color-theme);
+    flex: 1.2;
+}
+
+.main__account__left__infor{
+    font-weight: 700;
+    padding: 32px 15px 24px;
+    text-align: center;
+}
+
+.main__account__left__ava{
+    border-radius: 50%;
+    background-color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 136px;
+    height: 136px;
+    margin: 0 auto 16px;
+    font-size: 5rem;
+}
+
+.main__account__left__infor p,
+.main__account__left__infor h2{
+    font-size: 1.6rem;
+    color: white;
+}
+
+.main__account__left__infor p{
+    font-weight: 400;
+    margin-top: 7px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+
+}
+
+.main__account__left__infor__menu{
+    display: flex;
+    flex-direction: column;
+}
+
+/* .main__account__left__menu-list>a{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 15px 10px;
+} */
+
+.main__account__left a{
+    color: white;
+    font-size: 1.6rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 15px 10px;
+}
+
+
+.active-account{
+    background-color: rgba(255, 255, 255, .2);
+    font-weight: 700;
+}
+
+.main__account__right{
+    flex: 4;
+}
+
+.main__account__right__header h1{
+    border-bottom: 1px solid #FF9EA2;
+    font-size: 2.4rem;
+    font-weight: 700;
+    padding: 24px 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.main__account__right__content{
+    padding: 32px 24px 40px;
+}
+
+.main__account__right__content h2{
+    font-weight: 700;
+    font-size: 1.6rem;
+    margin-bottom: 20px;
+}
+
+.input-group{
+    display: flex;
+    margin-bottom: 16px;
+    align-items: center;
+}
+
+.input-group input{
+    width: 50%;
+    border: 1px solid var(--color-theme);
+    padding: 7px 10px;
+    border-radius: 5px;
+    height: 40px;
+}
+
+.btns{
+    display: flex;
+    padding-top: 20px;
+
+}
+
+.btns button{
+    width: 160px;
+    margin-right: 10px;
+    font-weight: 600;
+}
+
+/* ============ */
+/* SHIPPING ADDRESS */
+.main__account__right__content__address div{
+    margin-bottom: 7px;
+}
+
+.add-address{
+    background-color: transparent;
+    color: var(--color-theme);
+    font-size: 1.6rem;
+    width: 80px;
+    position: absolute;
+    right: 0;
+}
+
+.home-address{
+    font-size: 1.6rem;
+    display: flex;
+    justify-content: space-between;
+}
+
+.main__account__right__content__address footer{
+    background: #FF9EA2;
+    font-size: 1.6rem;
+    padding: 7px 10px;
+    margin-bottom: 10px;
+    color: #fff;
+    border-radius: 4px;
+}
+
+.address-overlay{
+    display: none;
+}
+
+.open-addressOverlay{
+    display: flex;
+}
+
+.address-form{
+    background-color: var(--background-color);
+    width: 800px;
+}
+
+/* ============ */
+/* SIGN IN */
+
+.modal-signIn{
+    background-color: #fffcfe ;
+    padding: 22px 30px;
+    width: 400px;
+}
+
+.modal__header{
+    font-size: 2rem;
+    padding-bottom: 22px;
+}
+
+.form__signIn{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.btn-signIn{
+    padding: 12px;
+    background-color: var(--color-theme);
+    border-color: var(--color-theme);
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: 500;
+    color: #fff;
+}
+
+.help{
+    display: flex;
+    justify-content: space-between;
+    margin: 10px 0;
+}
+
+.help a{
+    color: #05a;
+    font-size: 1.4rem;
+}
+
+.other-connection{
+    margin: 20px 0;
+    display: flex;
+    gap: 10px;
+}
+
+.other-connection button{
+    flex: 1;
+    padding: 10px;
+    background-color: white;
+    border: 1px solid rgba(0, 0, 0, .26);
+    border-radius: 4px;
+    font-size: 1.6rem;
+}
+
+.connect-with-fb{
+    background: url("https://www.lotteria.vn/grs-static/images/icon-fb.svg")  no-repeat;
+    background-size: 16px;
+    padding-left: 30px;
+}
+
+.connect-with-gg{
+    background: url("https://www.lotteria.vn/grs-static/images/icon-google.svg")  no-repeat;
+    background-size: 16px;
+    padding-left: 30px;
+}
+
+.switch-signUp{
+    text-align: center;
+    font-size: 1.4rem;
+}
+
+.switch-signUp a{
+    text-decoration: underline;
+    color: rgb(255, 91, 106);
+}
+
+/* =========== */
+/* SIGN UP */
+
+.modal-signUp{
+    background-color: #fffcfe ;
+    padding: 22px 30px;
+    width: 400px;
+}
+
+.modal__header{
+    font-size: 2rem;
+    padding-bottom: 22px;
+}
+
+.form__signUp{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.form__signUp small{
+    color: red;
+    font-size: 1.6rem;
+}
+
+.password-input{
+    position: relative;
+}
+
+.btn-signUp{
+    padding: 12px;
+    background-color: var(--color-theme);
+    border-color: var(--color-theme);
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: 500;
+    color: #fff;
+}
+
+.policy{
+    font-size: 1.3rem;
+    padding: 0 50px;
+    margin: 10px 0;
+    margin-right: 4px;
+    text-align: center;
+}
+
+.policy a{
+    color: var(--color-theme);
+    cursor: pointer;    
+}
+
+.other-connection{
+    margin: 20px 0;
+    display: flex;
+    gap: 10px;
+}
+
+.other-connection button{
+    flex: 1;
+    padding: 10px;
+    background-color: white;
+    border: 1px solid rgba(0, 0, 0, .26);
+    border-radius: 4px;
+    font-size: 1.6rem;
+}
+
+.connect-with-fb{
+    background: url("https://www.lotteria.vn/grs-static/images/icon-fb.svg")  no-repeat;
+    background-size: 16px;
+    padding-left: 30px;
+}
+
+.connect-with-gg{
+    background: url("https://www.lotteria.vn/grs-static/images/icon-google.svg")  no-repeat;
+    background-size: 16px;
+    padding-left: 30px;
+}
+
+.switch-signIn{
+    text-align: center;
+    font-size: 1.4rem;
+}
+
+.switch-signIn a{
+    text-decoration: underline;
+    color: rgb(255, 91, 106);
+}
+
+/* ========= */
+/* SIGN OUT */
+
+.overlay{
+    display: none;
+    background-color: rgba(0, 0, 0, 0.6);
+}
+
+.openOverlay{
+    display: flex;
+}
+
+.signout{
+    border-radius: 20px;
+    background: url("https://www.lotteria.vn/grs-static/images/bg-3.png") 50% 50% #fff;
+    padding: 24px;
+}
+
+.signout img{
+    max-height: 220px;
+    max-width: 100%;
+    
+}
+
+.signout p{
+    text-align: center;
+    font-size: 1.6rem;
+    margin-bottom: 40px;
+}
+
+.signout__confirm{
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.signout__confirm-cancel{
+    background-color: white;
+    border: 1px solid var(--color-theme);
+    color: var(--color-theme);
+    font-weight: 700;
+}
+
+
+.signout__confirm-ok{
+    color: white;
+    font-weight: 700;
+}
+
+
+/* ========= */
+/* HOVER */
+
+.header__left__nav >li:hover a{
+    color: var(--color-theme);
+    border-bottom: 3px solid var(--color-theme);
+}
+
+.header__language__inner:hover{
+    color: #2f80ed;
+}
+
+.header__right__down > li>a:hover{
+    cursor: pointer;
+    opacity: 0.6;
+}
+
+.sub__menu__account > li> a:hover{
+    opacity: 0.6;
+}
+
+button:hover{
+    opacity: 0.6;
+}
+
+.footer__right__content a:hover{
+    color: var(--color-theme) ;
+}
+
+.main__account__left__menu-list:hover{
+    background-color: rgba(255, 255, 255, .2);
+}

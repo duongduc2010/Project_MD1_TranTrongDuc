@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Fast Food</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+      integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../CSS/Main.Css" />
+  </head>
+  <body>
+    <!--SIGN IN  -->
+    <div class="signIn">
+      <div class="modal-signIn">
+        <div class="modal__header">
+          <span>Sign In</span>
+        </div>
+        <form class="form__signIn" action="">
+          <div>
+            <input type="email" id="userInput" placeholder="Email" />
+          </div>
+
+          <div class="password-input">
+            <input type="password" id="passwordInput" placeholder="Password" />
+            <i id="ShowPassword" class="fa-solid fa-eye-slash"></i>
+          </div>
+
+          <button type="submit" class="btn-signIn">CONTINUE</button>
+        </form>
+
+        <div class="help">
+          <a href="">Forget password</a>
+          <a href="">Sign in with SMS</a>
+        </div>
+        <hr />
+        <div class="other-connection">
+          <button>
+            <a class="connect-with-fb" href="">Facebook</a>
+          </button>
+          <button>
+            <a class="connect-with-gg" href="">Google</a>
+          </button>
+        </div>
+        <div class="switch-signUp">
+          <p>
+            You just know about DUNA?<a href="/HTML/SignUp.html">Sign up</a>
+          </p>
+        </div>
+      </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="../JS/SignIn.js"></script>
+  </body>
+</html>

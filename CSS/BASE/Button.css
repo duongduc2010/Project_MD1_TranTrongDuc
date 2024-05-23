@@ -1,0 +1,18 @@
+button{
+    width: 100%;
+    padding-top: 9px;
+    padding-bottom: 9px;
+    background-color: var(--color-theme);
+    border-color: transparent;
+    border-radius: 5px;
+    font-size: 1.6rem;
+    font-weight: 500;
+    color: #fff;
+    cursor: pointer;  
+}
+
+.sub-btn{
+    border: 1px solid #ff5b6a;
+    color: #ff5b6a;
+    background-color: #fff;
+}

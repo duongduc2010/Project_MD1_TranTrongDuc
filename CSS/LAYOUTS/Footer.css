@@ -1,0 +1,113 @@
+.footer{
+    background-color: #FFEAE3;  
+}
+
+.footer__container{
+    
+    padding: 30px 135px;
+    display: flex;
+}
+
+.footer__container__subscribe{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex: 1;
+}
+
+.footer__logo{
+    margin-bottom: 30px;
+}
+
+.footer__container__subscribe-heading{
+    font-size: 18px;
+    margin-bottom: 15px;
+    font-weight: 700;
+}
+
+.footer__email{
+    position: relative;
+    width: 100%;
+}
+
+.email-input{
+    padding: 15px 104px 15px 16px;
+    width: 100%;
+    display: block;
+    font-size: 1.6rem;
+    border-radius: 5px;
+    border: none;
+    outline: none;
+}
+
+.footer__email__send{
+    position: absolute;
+    font-size: 1.4rem;
+    right: 0;
+    top: 0;
+    background-color: white;
+    border: none;
+    width: 100px;
+    height: 100%;
+    font-size: 16px;
+    font-weight: 700;
+    color: #ff5b6a;
+    cursor: pointer;
+}
+
+.footer__right__content{
+    display: flex;
+    flex: 2;
+    justify-content: space-evenly;
+}
+
+.footer__right__content__item h3{
+    font-size: 1.6rem;
+    font-weight: 700;
+}
+
+.footer__right__content__item>ul >li{
+    margin-bottom: 8px;
+}
+
+.footer__right__content__item a{
+    font-size: 1.6rem;
+}
+
+.footer__right__content__item__contact li a{
+    display: block;
+    padding-left: 30px;
+    min-height: 22px;
+}
+
+.fb-contact{
+    background: url("https://www.lotteria.vn/grs-static/images/icon-fb-2.svg") 0 1px no-repeat;
+    
+}
+
+.ins-contact{
+    background: url("https://www.lotteria.vn/grs-static/images/icon-instagram.svg") 0 1px no-repeat;
+
+}
+
+.zalo-contact{
+    background: url("https://www.lotteria.vn/grs-static/images/icon-zalo.svg") 0 1px no-repeat;
+
+}
+
+.copyright{
+    background: #FF9EA2;
+    font-size: 1.4rem;
+    text-align: center;
+    padding: 16px 15px 15px;
+}
+
+strong{
+    margin-right: 13px;
+}
+
+.certicate{
+    padding-top: 20px;
+}
+
+

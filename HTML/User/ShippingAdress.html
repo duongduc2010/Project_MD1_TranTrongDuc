@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Fast Food</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+      integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../../CSS/Main.Css" />
+  </head>
+  <body>
+    <!-- HEADER -->
+
+    <header class="header" id="Header">
+      <div class="header__left">
+        <div class="header__logo">
+          <a href="">
+            <img
+              src="https://www.lotteria.vn/grs-static/images/lotteria_logo.svg"
+              width="67"
+              alt="Lotteria"
+            />
+          </a>
+        </div>
+
+        <ul class="header__left__nav">
+          <li>
+            <a class="" href="./Index.html">BESTSELLER</a>
+          </li>
+          <li><a href="">ODER</a></li>
+          <li><a href="">DISCOUNT</a></li>
+          <li><a href="">BRANCH</a></li>
+        </ul>
+      </div>
+      <div class="header__right">
+        <div class="header__right__up">
+          <div class="header__language">
+            <img
+              class="header__img-s"
+              src="https://www.lotteria.vn/grs-static/images/icon-en.svg"
+              width="19"
+              alt=""
+            />
+            English
+            <i class="fa-solid fa-caret-down icon__language"></i>
+            <div class="header__language__inner">
+              <img
+                class="header__img-s"
+                src="https://www.lotteria.vn/grs-static/images/icon-vn.svg"
+                width="19"
+                height="14"
+                alt=""
+              />
+              Vietnamese
+            </div>
+          </div>
+          <div class="header__downloadApp">
+            <img
+              class="header__img-s"
+              src="https://www.lotteria.vn/grs-static/images/logo-l.svg"
+              width="15"
+              alt="Lotteria"
+            />
+            Download App
+            <div class="header__downloadApp__inner">
+              <a href="">
+                <img
+                  class="header__img-s"
+                  src="https://www.lotteria.vn/grs-static/images/icon-appstore.png"
+                  alt=""
+                />
+              </a>
+              <a href="">
+                <img
+                  class="header__img-s"
+                  src="https://www.lotteria.vn/grs-static/images/icon-googleplay.png"
+                  alt=""
+                />
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <ul class="header__right__down">
+          <li class="header__right__down__location">
+            <a href="">
+              <img
+                src="https://www.lotteria.vn/grs-static/images/icon-pos-2.svg"
+                alt=""
+              />
+            </a>
+          </li>
+          <li class="header__right__down__account" id="accountIcon">
+            <a>
+              <img
+                src="https://www.lotteria.vn/grs-static/images/icon-myaccount.svg"
+                alt=""
+              />
+            </a>
+            <ul class="sub__menu__account">
+              <li>
+                <a href="./AccInfor.html">
+                  <img
+                    src="https://www.lotteria.vn/grs-static/images/icon-account-2.svg"
+                    alt=""
+                  />
+                  Account information</a
+                >
+              </li>
+              <li>
+                <a href="">
+                  <img
+                    src="https://www.lotteria.vn/grs-static/images/icon-pos.svg"
+                    alt=""
+                  />
+                  Shipping address</a
+                >
+              </li>
+              <li>
+                <a href="">
+                  <img
+                    src="https://www.lotteria.vn/grs-static/images/icon-history.svg"
+                    alt=""
+                  />
+                  Order history</a
+                >
+              </li>
+              <li>
+                <a href="">
+                  <img
+                    src="https://www.lotteria.vn/grs-static/images/icon-save-2.svg"
+                    alt=""
+                  />
+                  My menu/ wishlist</a
+                >
+              </li>
+              <li>
+                <a href="">
+                  <img
+                    src="https://www.lotteria.vn/grs-static/images/icon-help.svg"
+                    alt=""
+                  />
+                  Support</a
+                >
+              </li>
+              <li id="signOut">
+                <a href="">
+                  <img
+                    src="https://www.lotteria.vn/grs-static/images/icon-logout.svg"
+                    alt=""
+                  />
+                  Sign out</a
+                >
+              </li>
+            </ul>
+          </li>
+          <li class="header__right__down__notify">
+            <a href="">
+              <img
+                src="https://www.lotteria.vn/grs-static/images/icon-notification.svg"
+                alt=""
+              />
+            </a>
+          </li>
+          <li class="header__right__down__cart" id="cartIcon">
+            <a href="">
+              <img
+                src="https://www.lotteria.vn/grs-static/images/icon-cart.svg"
+                alt=""
+              />
+            </a>
+            <div class="quantity-cart">0</div>
+          </li>
+        </ul>
+      </div>
+    </header>
+
+    <!-- CART -->
+    <div class="cart-overlay">
+      <div class="cart">
+        <strong>Cart</strong>
+        <article class="cart__content">
+          <ul id="ulCart">
+            <!-- DATA LOCAL -->
+          </ul>
+        </article>
+        <footer class="cart__footer">
+          <div class="totalPrice">
+            <strong>Total</strong>
+            <p id="totalPrice">0 ₫</p>
+          </div>
+          <div class="payment">
+            <a href="">PAYMENT</a>
+          </div>
+        </footer>
+      </div>
+    </div>
+
+    <!-- MAIN -->
+
+    <main class="container">
+      <article class="main__account">
+        <div class="main__account__left">
+          <div class="main__account__left__infor">
+            <div class="main__account__left__ava">TD</div>
+            <h2>TRAN TRONG DUC</h2>
+            <p class="point-account">
+              <img
+                src="https://www.lotteria.vn/grs-static/images/icon-point.svg"
+                alt=""
+              />
+              0 point
+            </p>
+          </div>
+          <ul class="main__account__left__menu">
+            <li class="main__account__left__menu-list">
+              <a href="./AccInfor.html">
+                <img
+                  src="https://www.lotteria.vn/grs-static/images/icon-myaccount-white.svg"
+                  alt=""
+                />
+                Account Information</a
+              >
+            </li>
+            <li class="main__account__left__menu-list">
+              <a href="">
+                <img
+                  src="https://www.lotteria.vn/grs-static/images/icon-socials.svg"
+                  alt=""
+                />
+                Social Media</a
+              >
+            </li>
+            <li class="main__account__left__menu-list active-account">
+              <a href="">
+                <img
+                  src="https://www.lotteria.vn/grs-static/images/icon-pos-white.svg"
+                  alt=""
+                />
+                Shipping Address</a
+              >
+            </li>
+            <li class="main__account__left__menu-list">
+              <a href="">
+                <img
+                  src="https://www.lotteria.vn/grs-static/images/icon-history-white.svg"
+                  alt=""
+                />
+                Order history</a
+              >
+            </li>
+            <li class="main__account__left__menu-list">
+              <a href="">
+                <img
+                  src="https://www.lotteria.vn/grs-static/images/icon-coupon-2.svg"
+                  alt=""
+                />
+                My Coupons</a
+              >
+            </li>
+            <li class="main__account__left__menu-list">
+              <a href="">
+                <img
+                  src="https://www.lotteria.vn/grs-static/images/icon-save-white.svg"
+                  alt=""
+                />
+                My menu / wishlist</a
+              >
+            </li>
+            <li class="main__account__left__menu-list">
+              <a href="">
+                <img
+                  src="https://www.lotteria.vn/grs-static/images/icon-support.svg"
+                  alt=""
+                />
+                Feedback</a
+              >
+            </li>
+            <li class="main__account__left__menu-list">
+              <a href="">
+                <img
+                  src="https://www.lotteria.vn/grs-static/images/icon-support.svg"
+                  alt=""
+                />
+                Support</a
+              >
+            </li>
+            <li class="main__account__left__menu-list" id="signOut">
+              <a href="">
+                <img
+                  src="https://www.lotteria.vn/grs-static/images/icon-logout-white.svg"
+                  alt=""
+                />
+                Sign out</a
+              >
+            </li>
+          </ul>
+        </div>
+        <div class="main__account__right">
+          <header class="main__account__right__header">
+            <h1>
+              SHIPPING ADDRESS
+              <button class="add-address">+ ADD</button>
+            </h1>
+          </header>
+          <div class="main__account__right__content">
+            <section class="main__account__right__content__address">
+              <div>icon</div>
+              <div class="home-address">
+                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quia
+                nostrum atque quae
+                <span class="action">icon</span>
+              </div>
+              <footer>Shop address: HN MY DINH</footer>
+            </section>
+          </div>
+        </div>
+      </article>
+    </main>
+
+    <div class="address-overlay">
+      <form action="" class="address-form">
+        <p>
+          Enter your shipping address( the system will find the branch near you)
+        </p>
+        <div>
+          <label for="">Address</label>
+          <input type="text" placeholder="Please enter the address" />
+        </div>
+        <div>
+          <div>
+            <label for="">Address category</label>
+            <input type="text" placeholder="Gym / Home / Company " />
+          </div>
+          <div>
+            <label for="">Note</label>
+            <input type="text" placeholder="Please enter the address" />
+          </div>
+          <div class="btns">
+            <button type="button" class="sub-btn" id="closeAddress">
+              Cancel
+            </button>
+            <button>Add</button>
+          </div>
+        </div>
+      </form>
+    </div>
+    <!-- <article class="main__account">
+        <div class="main__account__left">
+          <div class="main__account__left__infor">
+            <div class="main__account__left__ava">TD</div>
+            <h2>${element.fullName.toUpperCase()}</h2>
+            <p class="point-account">
+              <img
+                src="https://www.lotteria.vn/grs-static/images/icon-point.svg"
+                alt=""
+              />
+              0 point
+            </p>
+          </div>
+          <ul class="main__account__left__menu">
+            <li class="main__account__left__menu-list active-account">
+              <a href="./AccInfor.html">
+                <img
+                  src="https://www.lotteria.vn/grs-static/images/icon-myaccount-white.svg"
+                  alt=""
+                />
+                Account Information</a
+              >
+            </li>
+            <li class="main__account__left__menu-list">
+              <a href="">
+                <img
+                  src="https://www.lotteria.vn/grs-static/images/icon-socials.svg"
+                  alt=""
+                />
+                Social Media</a
+              >
+            </li>
+            <li class="main__account__left__menu-list">
+              <a href="./ShippingAdress.html">
+                <img
+                  src="https://www.lotteria.vn/grs-static/images/icon-pos-white.svg"
+                  alt=""
+                />
+                Shipping Address</a
+              >
+            </li>
+            <li class="main__account__left__menu-list">
+              <a href="">
+                <img
+                  src="https://www.lotteria.vn/grs-static/images/icon-history-white.svg"
+                  alt=""
+                />
+                Order history</a
+              >
+            </li>
+            <li class="main__account__left__menu-list">
+              <a href="">
+                <img
+                  src="https://www.lotteria.vn/grs-static/images/icon-coupon-2.svg"
+                  alt=""
+                />
+                My Coupons</a
+              >
+            </li>
+            <li class="main__account__left__menu-list">
+              <a href="">
+                <img
+                  src="https://www.lotteria.vn/grs-static/images/icon-save-white.svg"
+                  alt=""
+                />
+                My menu / wishlist</a
+              >
+            </li>
+            <li class="main__account__left__menu-list">
+              <a href="">
+                <img
+                  src="https://www.lotteria.vn/grs-static/images/icon-support.svg"
+                  alt=""
+                />
+                Feedback</a
+              >
+            </li>
+            <li class="main__account__left__menu-list">
+              <a href="">
+                <img
+                  src="https://www.lotteria.vn/grs-static/images/icon-support.svg"
+                  alt=""
+                />
+                Support</a
+              >
+            </li>
+            <li class="main__account__left__menu-list" id="signOut">
+              <a href="">
+                <img
+                  src="https://www.lotteria.vn/grs-static/images/icon-logout-white.svg"
+                  alt=""
+                />
+                Sign out</a
+              >
+            </li>
+          </ul>
+        </div>
+        <div class="main__account__right">
+          <header class="main__account__right__header">
+            <h1>ACCOUNT INFORMATION</h1>
+          </header>
+          <div class="main__account__right__content">
+            <form class="formAccount">
+              <section>
+                <h2>USER INFORMATION</h2>
+                <div class="input-group">
+                  <label for="">Fullname</label>
+                  <input
+                    type="text"
+                    name=""
+                    id="fullName"
+                    value="${
+                    element.fullName
+                  }"
+                    required
+                  />
+                </div>
+                <div class="input-group">
+                  <label for="">Date of birth</label>
+                  <input type="date" name="" id="dob" value="${element.dob}" />
+                </div>
+                <div class="input-group">
+                  <label for="">Phone number</label>
+                  <input
+                    type="text"
+                    name=""
+                    id="phoneNumber"
+                    value="${
+                    element.phoneNumber
+                  }"
+                  />
+                </div>
+                <div class="input-group">
+                  <label for="">Email</label>
+                  <input
+                    type="email"
+                    name=""
+                    id=""
+                    value="${
+                    element.emailCurrent
+                  }"
+                  />
+                </div>
+              </section>
+              <section>
+                <h2>CHANGE YOUR PASSWORD</h2>
+                <div class="input-group">
+                  <label for="">Old password</label>
+                  <input
+                    type="password"
+                    name=""
+                    id=""
+                    value="${
+                    element.passwordCurrent
+                  }"
+                  />
+                </div>
+                <div class="input-group">
+                  <label for="">New password</label>
+                  <input type="password" name="" id="" />
+                </div>
+                <div class="input-group">
+                  <label for="">Re-enter your password</label>
+                  <input type="password" name="" id="" />
+                </div>
+              </section>
+              <div class="btns">
+                <button class="sub-btn">Withdraw account</button>
+                <button class="saveInfor">Save information</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </article>
+    </main> -->
+
+    <!-- FOOTER -->
+    <footer class="footer">
+      <div class="footer__container">
+        <div class="footer__container__subscribe">
+          <div class="footer__logo">
+            <img
+              src="https://www.lotteria.vn/grs-static/images/lotteria_logo.svg"
+              alt=""
+            />
+          </div>
+          <h3 class="footer__container__subscribe-heading">
+            SUBCRIBE FOR PROMOTIONAL UPDATES
+          </h3>
+          <form class="footer__email">
+            <input
+              class="email-input"
+              stype="text"
+              placeholder="Enter your email"
+            />
+            <button class="footer__email__send">Send →</button>
+          </form>
+        </div>
+
+        <div class="footer__right__content">
+          <div class="footer__right__content__item">
+            <h3>MORE INFORMATION</h3>
+            <ul>
+              <li>
+                <a href="">News</a>
+              </li>
+              <li>
+                <a href="">Promotions</a>
+              </li>
+              <li>
+                <a href="">Career Opportunities</a>
+              </li>
+              <li>
+                <a href="">Franchising</a>
+              </li>
+            </ul>
+          </div>
+          <div class="footer__right__content__item">
+            <h3>SUPPORT</h3>
+            <ul>
+              <li>
+                <a href="">Lotteria's Terms of Use</a>
+              </li>
+              <li>
+                <a href="">Privacy Policy</a>
+              </li>
+              <li>
+                <a href="">Delivery policy</a>
+              </li>
+              <li>
+                <a href="">Customer Care</a>
+              </li>
+            </ul>
+          </div>
+          <div class="footer__right__content__item">
+            <h3>FOLLOW US</h3>
+            <ul class="footer__right__content__item__contact">
+              <li>
+                <a class="fb-contact" href="">Facebook</a>
+              </li>
+              <li>
+                <a class="ins-contact" href="">Instagram</a>
+              </li>
+              <li>
+                <a class="zalo-contact" href="">Zalo</a>
+              </li>
+            </ul>
+            <p class="certicate">
+              <a href="">
+                <img
+                  src="https://www.lotteria.vn/grs-static/images/bct.png"
+                  alt=""
+                />
+              </a>
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="copyright">
+        <strong> © 2022 Lotteria All Rights Reserved</strong>Site by LDCC
+      </div>
+    </footer>
+
+    <!-- CONFIRM SIGN OUT -->
+    <div class="overlay">
+      <div class="signout">
+        <img
+          src="https://www.lotteria.vn/grs-static/images/illus-4.png"
+          alt=""
+        />
+        <p>Want to sign out?</p>
+        <div class="signout__confirm">
+          <button class="signout__confirm-cancel" id="js-btnCancel">
+            Cancel
+          </button>
+          <button class="signout__confirm-ok" id="js-btnOK">OK</button>
+        </div>
+      </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="../../JS/ShippingAddress.js"></script>
+  </body>
+</html>
