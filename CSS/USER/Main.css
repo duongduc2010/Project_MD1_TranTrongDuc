@@ -1,61 +1,21 @@
 /* IMPORT LAYOUTS */
 @import url(./LAYOUTS/Header.css);
 @import url(./LAYOUTS/Footer.css);
+
 /* IMPORT BASE */
-@import url(./BASE/Button.css);
-@import url(./BASE/Input.css);
+@import url(../BASE/Base.css);
+@import url(../BASE/Button.css);
+@import url(../BASE/Form.css);
 
-:root{
---color-theme: rgb(255, 91, 106);
---background-color: #FFFCFE;
-}
-
-*{
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
-    scrollbar-width: thin;
-    scrollbar-color: var(--color-theme) transparent;
-    color: #142f43;
-}
-
-html{
-    font-family: "Roboto", sans-serif;
-    font-size: 62.5%;
-    background-color: #FFFCFE;
-    line-height: 1.4;
-}
-
-a{
-    text-decoration: none;
-}
-
-ul{
-    list-style: none;
-}
-
-img{
-    object-fit: cover;
-}
 
 .header, .menu, .main{
     padding: 0 120px;   
 }
 
-.fa-eye, .fa-eye-slash{
-    position: absolute;
-    padding: 10px;
-    font-size: 1.4rem;
-    right: 0;
-    top: 5px;
+.main-container{
+    padding-top: 140px;
 }
 
-.swal-wide {
-    font-size: 1.8rem;
-}
-
-.signIn,
-.signUp,
 .overlay,
 .cart-overlay,
 .address-overlay{
@@ -75,7 +35,6 @@ img{
 /* MENU */
 
 .menu{
-    padding-top: 140px;
     margin-bottom: 60px;
 }
 
@@ -92,7 +51,7 @@ img{
 
 h4{
     text-align: center;
-    font-size: 1.5rem;
+    font-size: 15px;
     font-weight: 500;
     margin-top: 6px;
 }
@@ -186,7 +145,7 @@ h4{
 }
 
 .fa-heart{
-    font-size: 2.2rem;
+    font-size: 22px;
     position: absolute;
     right: 5%;
     top: 100%;  
@@ -202,7 +161,7 @@ h4{
 }
 
 h3{
-    font-size: 1.7rem;
+    font-size: 17px;
     font-weight: 500;
     margin-bottom: 10px;
 }
@@ -210,7 +169,7 @@ h3{
 .main__wrapped__item__detals{
     opacity: .7;
     margin-bottom: 20px;
-    font-size: 1.4rem;
+    font-size: 14px;
 }
 
 .main__wrapped__item__price p:first-child{
@@ -230,7 +189,7 @@ h3{
 .main__wrapped__item__price p:last-child span{
     color: #6B6C6C;
     text-decoration: line-through;
-    font-size: 1.5rem;
+    font-size: 15px;
 }
 
 .main__wrapped__item__btn{
@@ -268,7 +227,7 @@ h3{
 }
 
 .cart >strong{
-    font-size: 2.6rem;
+    font-size: 26px;
     padding: 10px 0 0 15px;
 }
 
@@ -299,17 +258,17 @@ h3{
     right: 0;
     bottom: 28%;
     padding: 15px;
-    font-size: 1.8rem;
+    font-size: 18px;
     cursor: pointer;
 }
 
 .details-cart a{
-    font-size: 1.6rem;
+    font-size: 16px;
     font-weight: 500;
 }
 
 .details-cart p{
-    font-size: 1.6rem;
+    font-size: 16px;
 }
 
 .quantity-group{
@@ -335,7 +294,7 @@ h3{
     display: flex;
     align-items: center;
     justify-content: space-between;
-    font-size: 1.8rem;
+    font-size: 18px;
 }
 
 .payment{
@@ -345,7 +304,7 @@ h3{
 .payment a{
     width: 100%;
     padding: 10px 0;
-    font-size: 1.6rem;
+    font-size: 16px;
     font-weight: 500;
     color: #fff;
     cursor: pointer;  
@@ -400,12 +359,12 @@ h3{
     width: 136px;
     height: 136px;
     margin: 0 auto 16px;
-    font-size: 5rem;
+    font-size: 50px;
 }
 
 .main__account__left__infor p,
 .main__account__left__infor h2{
-    font-size: 1.6rem;
+    font-size: 16px;
     color: white;
 }
 
@@ -433,7 +392,7 @@ h3{
 
 .main__account__left a{
     color: white;
-    font-size: 1.6rem;
+    font-size: 16px;
     display: flex;
     align-items: center;
     gap: 10px;
@@ -452,7 +411,7 @@ h3{
 
 .main__account__right__header h1{
     border-bottom: 1px solid #FF9EA2;
-    font-size: 2.4rem;
+    font-size: 24px;
     font-weight: 700;
     padding: 24px 30px;
     display: flex;
@@ -467,7 +426,7 @@ h3{
 
 .main__account__right__content h2{
     font-weight: 700;
-    font-size: 1.6rem;
+    font-size: 16px;
     margin-bottom: 20px;
 }
 
@@ -506,21 +465,21 @@ h3{
 .add-address{
     background-color: transparent;
     color: var(--color-theme);
-    font-size: 1.6rem;
+    font-size: 16px;
     width: 80px;
     position: absolute;
     right: 0;
 }
 
 .home-address{
-    font-size: 1.6rem;
+    font-size: 16px;
     display: flex;
     justify-content: space-between;
 }
 
 .main__account__right__content__address footer{
     background: #FF9EA2;
-    font-size: 1.6rem;
+    font-size: 16px;
     padding: 7px 10px;
     margin-bottom: 10px;
     color: #fff;
@@ -538,173 +497,6 @@ h3{
 .address-form{
     background-color: var(--background-color);
     width: 800px;
-}
-
-/* ============ */
-/* SIGN IN */
-
-.modal-signIn{
-    background-color: #fffcfe ;
-    padding: 22px 30px;
-    width: 400px;
-}
-
-.modal__header{
-    font-size: 2rem;
-    padding-bottom: 22px;
-}
-
-.form__signIn{
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-}
-
-.btn-signIn{
-    padding: 12px;
-    background-color: var(--color-theme);
-    border-color: var(--color-theme);
-    border-radius: 5px;
-    font-size: 16px;
-    font-weight: 500;
-    color: #fff;
-}
-
-.help{
-    display: flex;
-    justify-content: space-between;
-    margin: 10px 0;
-}
-
-.help a{
-    color: #05a;
-    font-size: 1.4rem;
-}
-
-.other-connection{
-    margin: 20px 0;
-    display: flex;
-    gap: 10px;
-}
-
-.other-connection button{
-    flex: 1;
-    padding: 10px;
-    background-color: white;
-    border: 1px solid rgba(0, 0, 0, .26);
-    border-radius: 4px;
-    font-size: 1.6rem;
-}
-
-.connect-with-fb{
-    background: url("https://www.lotteria.vn/grs-static/images/icon-fb.svg")  no-repeat;
-    background-size: 16px;
-    padding-left: 30px;
-}
-
-.connect-with-gg{
-    background: url("https://www.lotteria.vn/grs-static/images/icon-google.svg")  no-repeat;
-    background-size: 16px;
-    padding-left: 30px;
-}
-
-.switch-signUp{
-    text-align: center;
-    font-size: 1.4rem;
-}
-
-.switch-signUp a{
-    text-decoration: underline;
-    color: rgb(255, 91, 106);
-}
-
-/* =========== */
-/* SIGN UP */
-
-.modal-signUp{
-    background-color: #fffcfe ;
-    padding: 22px 30px;
-    width: 400px;
-}
-
-.modal__header{
-    font-size: 2rem;
-    padding-bottom: 22px;
-}
-
-.form__signUp{
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-}
-
-.form__signUp small{
-    color: red;
-    font-size: 1.6rem;
-}
-
-.password-input{
-    position: relative;
-}
-
-.btn-signUp{
-    padding: 12px;
-    background-color: var(--color-theme);
-    border-color: var(--color-theme);
-    border-radius: 5px;
-    font-size: 16px;
-    font-weight: 500;
-    color: #fff;
-}
-
-.policy{
-    font-size: 1.3rem;
-    padding: 0 50px;
-    margin: 10px 0;
-    margin-right: 4px;
-    text-align: center;
-}
-
-.policy a{
-    color: var(--color-theme);
-    cursor: pointer;    
-}
-
-.other-connection{
-    margin: 20px 0;
-    display: flex;
-    gap: 10px;
-}
-
-.other-connection button{
-    flex: 1;
-    padding: 10px;
-    background-color: white;
-    border: 1px solid rgba(0, 0, 0, .26);
-    border-radius: 4px;
-    font-size: 1.6rem;
-}
-
-.connect-with-fb{
-    background: url("https://www.lotteria.vn/grs-static/images/icon-fb.svg")  no-repeat;
-    background-size: 16px;
-    padding-left: 30px;
-}
-
-.connect-with-gg{
-    background: url("https://www.lotteria.vn/grs-static/images/icon-google.svg")  no-repeat;
-    background-size: 16px;
-    padding-left: 30px;
-}
-
-.switch-signIn{
-    text-align: center;
-    font-size: 1.4rem;
-}
-
-.switch-signIn a{
-    text-decoration: underline;
-    color: rgb(255, 91, 106);
 }
 
 /* ========= */
@@ -733,7 +525,7 @@ h3{
 
 .signout p{
     text-align: center;
-    font-size: 1.6rem;
+    font-size: 16px;
     margin-bottom: 40px;
 }
 
@@ -748,14 +540,16 @@ h3{
     border: 1px solid var(--color-theme);
     color: var(--color-theme);
     font-weight: 700;
+    width: 100%;
 }
 
 
 .signout__confirm-ok{
     color: white;
     font-weight: 700;
-}
+    width: 100%;
 
+}
 
 /* ========= */
 /* HOVER */
@@ -775,10 +569,6 @@ h3{
 }
 
 .sub__menu__account > li> a:hover{
-    opacity: 0.6;
-}
-
-button:hover{
     opacity: 0.6;
 }
 

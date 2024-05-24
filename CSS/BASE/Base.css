@@ -1,0 +1,31 @@
+:root{
+    --color-theme: rgb(255, 91, 106);
+    --background-color: #FFFCFE;
+    }
+    
+    *{
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+        scrollbar-width: thin;
+        scrollbar-color: var(--color-theme) transparent;
+        color: #142f43;
+    }
+    
+    html{
+        font-family: "Roboto", sans-serif;
+        background-color: #FFFCFE;
+        line-height: 1.4;
+    }
+    
+    a{
+        text-decoration: none;
+    }
+    
+    ul{
+        list-style: none;
+    }
+    
+    img{
+        object-fit: cover;
+    }

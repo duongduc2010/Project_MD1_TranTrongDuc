@@ -34,7 +34,7 @@
 }
 
 .header__left__nav >li > a{
-    font-size: 1.6rem;
+    font-size: 16px;
     font-weight: 700;
     padding: 0 12px;
     line-height: 100px;
@@ -49,7 +49,7 @@
 
 .header__language, 
 .header__downloadApp{
-    font-size: 1.2rem;
+    font-size: 12px;
     position: relative;
     display: flex;
     align-items: center;
@@ -137,7 +137,7 @@
 }
 
 .sub__menu__account>li>a{
-    font-size: 1.6rem;
+    font-size: 16px;
     display: flex;
     align-items: center;
     gap: 10px;
@@ -159,7 +159,7 @@
     display: block;
     margin: 0 auto;
     padding-top: 9px;
-    line-height: 4rem;
+    /* line-height: 4rem; */
 }
 
 .header__right__down__cart{
@@ -170,7 +170,7 @@
     position: absolute;
     right: -4px;
     top: -6px;
-    font-size: 1.2rem;
+    font-size: 12px;
     width: 20px;
     height: 20px;
     text-align: center;

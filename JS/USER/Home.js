@@ -137,7 +137,7 @@ function render() {
     liHtml += `
       <li class="main__wrapped__item">
       <div class="main__wrapped__item__photo">
-        <a href="">
+        <a href="./Detail_Product.html">
           <img
             src="../../ASSET/IMAGE/MEALLIST/${listMealLocal[i].image}"
             alt=""
@@ -164,7 +164,7 @@ function render() {
           }
         </div>
         <div class="main__wrapped__item__btn">
-          <button onclick="addCart(${i})" class="btn-cart">Add to cart</button>
+          <button style="width: 100%" onclick="addCart(${i})" class="btn-cart">Add to cart</button>
         </div>
       </div>
     </li>;
@@ -323,3 +323,83 @@ window.addEventListener("click", () => {
   languageInner.classList.remove("open__inner");
   downloadInner.classList.remove("open__inner");
 });
+
+// ===========================
+// SLIDE CATEGORY
+const menuDot = document.querySelector(".menu__switch");
+const ulCategory = document.querySelector(".menu__list");
+
+const arr = [
+  { name: "Bestseller", image: "Bestseller.jpg" },
+  { name: "Promotion", image: "Promotion.jpg" },
+  { name: "Drinks", image: "Drinks.jpg" },
+  { name: "Side", image: "Side.jpg" },
+  { name: "Rice & Spaghetti", image: "Rice & Spaghetti.jpg" },
+  { name: "Pack", image: "Pack.jpg" },
+  { name: "Value", image: "Value.jpg" },
+  { name: "Combo", image: "Combo.jpg" },
+  { name: "Chicken Set", image: "Chicken Set.jpg" },
+  { name: "New Item 1", image: "Bestseller.jpg" },
+  { name: "New Item 2", image: "Side.jpg" },
+];
+
+let pageSize = 9;
+let totalPage = 1;
+let currentPage = 1;
+let currentItem = 0;
+
+// MOVEPAGE
+function moveDot(index) {
+  currentPage = index;
+  renderMenu();
+}
+
+function renderMenu(data) {
+  // let usersLocal = JSON.parse(localStorage.getItem("FFusers")) || [];
+
+  // if (Array.isArray(data)) {
+  //   usersLocal = data;
+  // }
+  totalPage = Math.ceil(arr.length / pageSize);
+  let dot = "";
+  for (let i = 1; i <= totalPage; i++) {
+    if (currentPage == i) {
+      dot += `<span onclick="moveDot(${i})" class="active__switch"></span>`;
+    } else {
+      dot += `<span onclick="moveDot(${i})"></span>`;
+    }
+  }
+
+  menuDot.innerHTML = dot;
+  let start = 0;
+  let end = 0;
+  start = (currentPage - 1) * pageSize;
+  end = pageSize * currentPage - 1;
+
+  let liHtml = "";
+  if (arr.length - 1 <= end) {
+    end = arr.length - 1;
+    start = end - pageSize;
+    if (start < 0) {
+      start = 0;
+    }
+  }
+
+  for (let i = start; i <= end; i++) {
+    liHtml += `
+    <li class="menu__list_item ${currentItem === i ? "active-item" : ""}" >
+      <a>
+        <img
+          class="active-menu"
+          src="../../ASSET/IMAGE/CATEGORY/${arr[i].image}"
+          alt=""
+        />
+        <h4 class="active-h4">${arr[i].name}</h4>
+      </a>
+    </li>
+    `;
+  }
+  ulCategory.innerHTML = liHtml;
+}
+
+renderMenu();

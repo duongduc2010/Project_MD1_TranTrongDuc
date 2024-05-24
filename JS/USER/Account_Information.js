@@ -9,7 +9,6 @@ const cartOverlay = document.querySelector(".cart-overlay");
 const cart = document.querySelector(".cart");
 const ulCart = document.querySelector("#ulCart");
 let quantity = document.querySelector("#quantity");
-
 // =====================
 // SUBACCOUNT
 // OPEN SUBACCOUNT
@@ -57,6 +56,7 @@ cart.addEventListener("click", (e) => {
 window.addEventListener("click", () => {
   cartOverlay.classList.remove("openCart");
 });
+
 // RENDER CART
 function renderCart() {
   let liCart = "";

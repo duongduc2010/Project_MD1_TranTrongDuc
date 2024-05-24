@@ -1,9 +1,3 @@
-const openModal = document.querySelector("#openModal");
-const closeModals = document.querySelectorAll("#closeModal");
-const formModal = document.querySelector(".modal__form");
-const overlay = document.querySelector(".overlay");
-const btnSearch = document.querySelector("#btn-search");
-
 // function renderPaginations(products) {
 //   totalPage = Math.ceil(products.length / pageSize); //làm trên lên
 //   let stringHTML = "";
@@ -23,93 +17,9 @@ const btnSearch = document.querySelector("#btn-search");
 
 // realusers = renderPaginations(realProducts);
 
-// OPEN/CLOSE MODAL
-openModal.addEventListener("click", () => {
-  overlay.classList.add("open-modal");
-});
-
-closeModals.forEach((closeModal) => {
-  closeModal.addEventListener("click", () => {
-    overlay.classList.remove("open-modal");
-    resetForm();
-  });
-});
 // SUBMIT FORM
-const skillInput = document.querySelector("#skillInput");
-const experienceInput = document.querySelector("#experienceInput");
-const imageInput = document.querySelector("#imageInput");
 const tbody = document.querySelector("tbody");
 let usersLocal = JSON.parse(localStorage.getItem("FFusers")) || [];
-// let isEdit = false;
-// VALIDATE INPUT
-// function showError(input, message) {
-//   let parent = input.parentElement;
-//   let span = parent.querySelector("span");
-//   span.innerHTML = message;
-// }
-
-// function showSucces(input) {
-//   let parent = input.parentElement;
-//   let span = parent.querySelector("span");
-//   span.innerHTML = "";
-// }
-
-// function checkEmpty(listInput) {
-//   let checkEmpty = false;
-//   for (let i = 0; i < listInput.length; i++) {
-//     let input = listInput[i];
-//     input.value = input.value.trim();
-//     if (!input.value) {
-//       checkEmpty = true;
-//       showError(input, "khong duoc trong");
-//     } else {
-//       showSucces(input);
-//     }
-//   }
-//   return checkEmpty;
-// }
-
-// SEARCH
-
-btnSearch.addEventListener("click", () => {
-  renderAccount();
-});
-
-formModal.addEventListener("submit", (e) => {
-  e.preventDefault();
-  let checkEmptyInput = checkEmpty([skillInput, experienceInput, imageInput]);
-  if (!checkEmptyInput) {
-    let skill = {
-      skill: skillInput.value,
-      experience: experienceInput.value,
-      image: imageInput.value,
-    };
-
-    // EDIT OR ADD
-    if (isEdit) {
-      skillsLocal[editIndex].skill = skillInput.value;
-      skillsLocal[editIndex].experience = experienceInput.value;
-      skillsLocal[editIndex].image = imageInput.value;
-    } else {
-      skillsLocal.push(skill);
-    }
-
-    renderAccount();
-    resetForm();
-  }
-  //   else {
-  //     alert("sai");
-  //   }
-});
-
-function resetForm() {
-  isEdit = false;
-  submitForm.innerHTML = "Add";
-  skillInput.value = "";
-  experienceInput.value = "";
-  imageInput.value = "";
-  overlay.classList.remove("open-modal");
-}
 
 // DEVICE PAGE
 const pageList = document.getElementById("page-list");
@@ -118,26 +28,19 @@ let totalPage = 1;
 let currentPage = 1;
 
 // MOVEPAGE
-let tests = document.querySelectorAll(".page-number");
 function movePage(index) {
   currentPage = index;
   renderAccount();
 }
 
 // RENDER
-const contentSearch = document.querySelector(".search-input");
-
 function renderAccount(data) {
   let usersLocal = JSON.parse(localStorage.getItem("FFusers")) || [];
   if (Array.isArray(data)) {
     usersLocal = data;
   }
 
-  usersLocal = usersLocal.filter((item) =>
-    item.email.toLowerCase().includes(contentSearch.value)
-  );
-
-  totalPage = Math.ceil(usersLocal.length / 5);
+  totalPage = Math.ceil(usersLocal.length / pageSize);
   let page = "";
   for (let i = 1; i <= totalPage; i++) {
     if (currentPage == i) {
@@ -154,54 +57,43 @@ function renderAccount(data) {
 
   let trHtml = "";
 
-  if (usersLocal.length < end) {
+  if (usersLocal.length - 1 <= end) {
     end = usersLocal.length - 1;
   }
 
   for (let i = start; i <= end; i++) {
     trHtml += `
-                <tr>
-                    <td>${i + 1}</td>
+    <tr>
+    <td>${i + 1}</td>
                     <td></td>
                     <td>${usersLocal[i].email}</td>
                     <td>${usersLocal[i].status ? "Active" : "Block"}</td>
                     <td>20/05/2024</td>
-                    <td><button onclick="Edit(${
-                      usersLocal[i].id
-                    })">Edit</button></td>
                     <td><button onclick="changeStatus(${usersLocal[i].id})">${
       usersLocal[i].status ? "Block" : "Active"
     }</button></td>
-                    <td><button onclick="Del(${
-                      usersLocal[i].id
-                    })">Delete</button></td>
-                </tr>
-      `;
+
+    `;
   }
   tbody.innerHTML = trHtml;
 }
 
 renderAccount();
 
-// DELETE SKILL
-function Del(index) {
-  if (confirm("Do you want to delete?")) {
-    skillsLocal.splice(index, 1);
-    renderAccount();
-  }
-}
+// SEARCH
+const btnSearch = document.querySelector("#btn-search");
 
-// EDIT SKILL
-const submitForm = document.querySelector("#submitForm");
-function Edit(index) {
-  overlay.classList.add("open-modal");
-  skillInput.value = skillsLocal[index].skill;
-  experienceInput.value = skillsLocal[index].experience;
-  imageInput.value = skillsLocal[index].image;
-  submitForm.innerHTML = "Edit";
-  isEdit = true;
-  editIndex = index;
-}
+btnSearch.addEventListener("click", () => {
+  const usersLocal = JSON.parse(localStorage.getItem("FFusers")) || [];
+  const contentSearch = document
+    .querySelector(".search-input")
+    .value.toLowerCase();
+  userFilter = usersLocal.filter((item) =>
+    item.email.toLowerCase().includes(contentSearch)
+  );
+  console.log(userFilter);
+  renderAccount(userFilter);
+});
 
 // CHANGE ACTIVE/BLOCK
 
@@ -215,3 +107,49 @@ function changeStatus(id) {
 
 // CHANGE PAGE
 function changePage() {}
+
+// =====================
+// SUBACCOUNT
+const settingDown = document.querySelector(".fa-chevron-down");
+const subAccount = document.querySelector(".sub__menu__account");
+
+// OPEN SUBACCOUNT
+settingDown.addEventListener("click", (e) => {
+  e.stopPropagation();
+  if (!subAccount.classList.contains("open-subaccount")) {
+    subAccount.classList.add("open-subaccount");
+  } else {
+    subAccount.classList.remove("open-subaccount");
+  }
+});
+// CLOSE SUBACCOUNT
+subAccount.addEventListener("click", (e) => {
+  e.stopPropagation();
+});
+
+window.addEventListener("click", () => {
+  subAccount.classList.remove("open-subaccount");
+});
+
+// ======================
+// SIGN OUT
+const btnCancel = document.querySelector("#js-btnCancel");
+const btnOK = document.querySelector("#js-btnOK");
+const overlay = document.querySelector(".overlay");
+const signOut = document.querySelector("#signOut");
+// OPEN SIGN OUT
+overlay.addEventListener("click", (e) => {
+  e.stopPropagation();
+});
+signOut.addEventListener("click", (e) => {
+  e.preventDefault();
+  overlay.classList.add("openOverlay");
+});
+// OK
+btnOK.addEventListener("click", () => {
+  window.location.href = "../SignIn.html";
+});
+// CANCEL
+btnCancel.addEventListener("click", (e) => {
+  overlay.classList.remove("openOverlay");
+});

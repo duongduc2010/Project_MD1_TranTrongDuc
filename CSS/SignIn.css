@@ -1,0 +1,111 @@
+/* IMPORT BASE */
+@import url(./BASE/Button.css);
+@import url(./BASE/Form.css);
+@import url(./BASE/Base.css);
+
+/* ============ */
+/* SIGN IN */
+
+.signIn{
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.8);
+    z-index: 1000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-signIn{
+    background-color: #fffcfe ;
+    padding: 22px 30px;
+    width: 400px;
+}
+
+.modal__header{
+    font-size: 20px;
+    padding-bottom: 22px;
+}
+
+.form__signIn{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.password-input{
+    position: relative;
+}
+
+.fa-eye, .fa-eye-slash{
+    position: absolute;
+    padding: 10px;
+    font-size: 14px;
+    right: 0;
+    top: 5px;
+}
+
+.btn-signIn{
+    padding: 12px;
+    background-color: var(--color-theme);
+    border-color: var(--color-theme);
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: 500;
+    color: #fff;
+}
+
+.help{
+    display: flex;
+    justify-content: space-between;
+    margin: 10px 0;
+}
+
+.help a{
+    color: #05a;
+    font-size: 14px;
+}
+
+.other-connection{
+    margin: 20px 0;
+    display: flex;
+    gap: 10px;
+}
+
+.other-connection button{
+    flex: 1;
+    padding: 10px;
+    background-color: white;
+    border: 1px solid rgba(0, 0, 0, .26);
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+.connect-with-fb{
+    background: url("https://www.lotteria.vn/grs-static/images/icon-fb.svg")  no-repeat;
+    background-size: 16px;
+    padding-left: 30px;
+}
+
+.connect-with-gg{
+    background: url("https://www.lotteria.vn/grs-static/images/icon-google.svg")  no-repeat;
+    background-size: 16px;
+    padding-left: 30px;
+}
+
+.switch-signUp{
+    text-align: center;
+    font-size: 14px;
+}
+
+.switch-signUp a{
+    text-decoration: underline;
+    color: rgb(255, 91, 106);
+}
+
+.swal-wide {
+    font-size: 18px;
+}
