@@ -7,7 +7,6 @@
 @import url(../BASE/Button.css);
 @import url(../BASE/Form.css);
 
-
 .header, .main{
     padding: 0 120px;   
 }
@@ -50,7 +49,7 @@
 
 .main__account__left{
     background-color: var(--color-theme);
-    flex: 1.2;
+    width: 250px;
 }
 
 .main__account__left__infor{
@@ -206,6 +205,108 @@
 .address-form{
     background-color: var(--background-color);
     width: 800px;
+}
+
+.product{
+    margin-bottom: 66px;
+    flex-wrap: wrap;
+    display: flex;
+    row-gap: 30px;
+    column-gap: 15px;
+}
+
+.product__item{
+    width: 32%;
+    position: relative;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+    padding-bottom: 10px;
+}
+
+@media (max-width: 390px) {
+    .header, .menu, .main {
+        padding: 0
+    }
+
+    .product__item{
+        width: 100%;
+    }
+}
+
+@media (min-width:390px) and (max-width: 720px) {
+    .header, .menu, .main {
+        padding: 0
+    }
+
+    .product__item{
+        width: 30%;
+    }
+}
+
+
+.product__item__photo{
+    position: relative;
+}
+
+.product__item__photo > a > img{
+    width: 100%;
+    height: 180px;
+}
+
+.fa-heart{
+    font-size: 22px;
+    position: absolute;
+    right: 5%;
+    top: 100%;  
+    cursor: pointer;  
+}
+
+.red-heart{
+    color: red;
+}
+
+.product__item__content{
+    padding: 0 12px;
+}
+
+h3{
+    font-size: 17px;
+    font-weight: 500;
+    margin-bottom: 10px;
+}
+
+.product__item__detals{
+    opacity: .7;
+    margin-bottom: 20px;
+    font-size: 14px;
+}
+
+.product__item__price p:first-child{
+    color: var(--color-theme);
+    font-weight: 700;
+    font-size: 25px;
+    line-height: 100%;
+    margin-bottom: 5px;
+}
+
+.product__item__price p:last-child{
+    background: url("https://www.lotteria.vn/grs-static/images/icon-discount.svg") no-repeat;
+    padding-left: 24px;
+}
+
+.product__item__price p:last-child span{
+    color: #6B6C6C;
+    text-decoration: line-through;
+    font-size: 15px;
+}
+
+.product__item__btn{
+    padding: 10px 0;
+    position: absolute;
+    width: 100%;
+    left: 0;
+    bottom: 0;
+    padding: 10px 12px;
 }
 
 /* MAIN END*/

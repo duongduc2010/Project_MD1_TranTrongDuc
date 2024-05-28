@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Fast Food</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+      integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../../CSS/USER/Payment.css" />
+  </head>
+  <body>
+    <!-- ************************** -->
+    <!-- HEADER -->
+
+    <header class="header flex" id="Header">
+      <div class="header__left flex">
+        <div class="header__logo">
+          <a href="">
+            <img
+              src="https://www.lotteria.vn/grs-static/images/lotteria_logo.svg"
+              width="67"
+              alt="Lotteria"
+            />
+          </a>
+        </div>
+
+        <ul class="header__left__nav flex">
+          <li>
+            <a class="active-nav" href="./Index.html">BESTSELLER</a>
+          </li>
+          <li><a href="">ODER</a></li>
+          <li><a href="">DISCOUNT</a></li>
+          <li><a href="">BRANCH</a></li>
+        </ul>
+      </div>
+      <div class="header__right"></div>
+    </header>
+
+    <!-- ************************** -->
+    <!-- MAIN -->
+
+    <main class="main">
+      <div class="main__left">
+        <section class="main__left__cart">
+          <header class="flex">
+            <h2>YOUR CART (X ITEM)</h2>
+            <button>Add more</button>
+          </header>
+          <ul class="main__left__cart__content">
+            <li class="list-cart flex">
+              <div class="item-cart-left flex">
+                <img src="../../ASSET/IMAGE/PRODUCT/Bulgogi Combo.png" alt="" />
+                <div class="item-cart-infor">
+                  <h3 style="color: var(--color-theme)" class="item-cart-name">
+                    FOOD1
+                  </h3>
+                  <span class="item-cart-price">82.000</span>
+                </div>
+              </div>
+              <div class="item-cart-right flex">
+                <div class="quantity-group flex">
+                  <button
+                    onclick="changeQuantity(
+        )"
+                    class="quantity-btn"
+                  >
+                    -
+                  </button>
+                  <p id="quantity">total</p>
+                  <button
+                    onclick="changeQuantity(
+        )"
+                    class="quantity-btn"
+                  >
+                    +
+                  </button>
+                </div>
+                <i style="font-size: 22px" class="fa-regular fa-trash-can"></i>
+              </div>
+            </li>
+            <li class="list-cart flex">
+              <div class="item-cart-left flex">
+                <img src="../../ASSET/IMAGE/PRODUCT/Bulgogi Combo.png" alt="" />
+                <div class="item-cart-infor">
+                  <h3 style="color: var(--color-theme)" class="item-cart-name">
+                    FOOD1
+                  </h3>
+                  <span class="item-cart-price">82.000</span>
+                </div>
+              </div>
+              <div class="item-cart-right flex">
+                <div class="quantity-group flex">
+                  <button
+                    onclick="changeQuantity(
+          )"
+                    class="quantity-btn"
+                  >
+                    -
+                  </button>
+                  <p id="quantity">total</p>
+                  <button
+                    onclick="changeQuantity(
+          )"
+                    class="quantity-btn"
+                  >
+                    +
+                  </button>
+                </div>
+
+                <!-- <div class="item-cart-quantity"></div> -->
+                <i style="font-size: 22px" class="fa-regular fa-trash-can"></i>
+              </div>
+            </li>
+          </ul>
+        </section>
+        <section></section>
+        <section></section>
+      </div>
+
+      <div class="main__right">
+        <section class="shipping-address">
+          <p>Deliver to</p>
+          <h3>XXXXXXXXXXXXXXXXXXXXXXXXX</h3>
+          <p class="story-name">Store: HN MY DINH</p>
+          <div class="border-dot"></div>
+          <p style="text-align: center">
+            Time to receive online orders is from 08:00 to 21:30 every day
+          </p>
+        </section>
+
+        <section class="bill">
+          <div class="total-price flex">
+            <span>SubTotal</span>
+            <span>100.000 </span>
+          </div>
+          <div class="border-dot"></div>
+          <div class="total-price flex">
+            <h3>Total</h3>
+            <h3>100.000</h3>
+          </div>
+          <div class="btn-continue">
+            <a href="./Finish.html">Continue</a>
+          </div>
+        </section>
+      </div>
+    </main>
+
+    <!-- FOOTER -->
+
+    <footer class="footer">
+      <div class="footer__container">
+        <div class="footer__container__subscribe flex">
+          <div class="footer__logo">
+            <img
+              src="https://www.lotteria.vn/grs-static/images/lotteria_logo.svg"
+              alt=""
+            />
+          </div>
+          <h3 class="footer__container__subscribe-heading">
+            SUBCRIBE FOR PROMOTIONAL UPDATES
+          </h3>
+          <form class="footer__email">
+            <input
+              class="email-input"
+              stype="text"
+              placeholder="Enter your email"
+            />
+            <button class="footer__email__send">Send →</button>
+          </form>
+        </div>
+
+        <div class="footer__right__content">
+          <div class="footer__right__content__item">
+            <h3>MORE INFORMATION</h3>
+            <ul>
+              <li>
+                <a href="">News</a>
+              </li>
+              <li>
+                <a href="">Promotions</a>
+              </li>
+              <li>
+                <a href="">Career Opportunities</a>
+              </li>
+              <li>
+                <a href="">Franchising</a>
+              </li>
+            </ul>
+          </div>
+          <div class="footer__right__content__item">
+            <h3>SUPPORT</h3>
+            <ul>
+              <li>
+                <a href="">Lotteria's Terms of Use</a>
+              </li>
+              <li>
+                <a href="">Privacy Policy</a>
+              </li>
+              <li>
+                <a href="">Delivery policy</a>
+              </li>
+              <li>
+                <a href="">Customer Care</a>
+              </li>
+            </ul>
+          </div>
+          <div class="footer__right__content__item">
+            <h3>FOLLOW US</h3>
+            <ul class="footer__right__content__item__contact">
+              <li>
+                <a class="fb-contact" href="">Facebook</a>
+              </li>
+              <li>
+                <a class="ins-contact" href="">Instagram</a>
+              </li>
+              <li>
+                <a class="zalo-contact" href="">Zalo</a>
+              </li>
+            </ul>
+            <p class="certicate">
+              <a href="">
+                <img
+                  src="https://www.lotteria.vn/grs-static/images/bct.png"
+                  alt=""
+                />
+              </a>
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="copyright">
+        <strong> © 2022 Lotteria All Rights Reserved</strong>Site by LDCC
+      </div>
+    </footer>
+
+    <!-- CART -->
+    <div class="cartOverlay flex hidden">
+      <div class="cartModal">
+        <strong>Cart</strong>
+        <article class="cart__content">
+          <ul id="ulCart">
+            <!-- data local -->
+          </ul>
+        </article>
+        <footer class="cart__footer">
+          <div class="totalPrice flex">
+            <strong>Total</strong>
+            <p id="totalPrice">0 ₫</p>
+          </div>
+          <div class="payment">
+            <a href="">PAYMENT</a>
+          </div>
+        </footer>
+      </div>
+    </div>
+
+    <script src="../../JS/USER/Payment.js"></script>
+  </body>
+</html>

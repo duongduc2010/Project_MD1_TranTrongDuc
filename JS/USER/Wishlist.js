@@ -183,7 +183,7 @@ function renderAccount() {
           </p>
         </div>
         <ul class="main__account__left__menu">
-          <li class="main__account__left__menu-list active-account">
+          <li class="main__account__left__menu-list">
             <a href="./AccInfor.html">
               <img
                 src="https://www.lotteria.vn/grs-static/images/icon-myaccount-white.svg"
@@ -228,8 +228,8 @@ function renderAccount() {
               My Coupons</a
             >
           </li>
-          <li class="main__account__left__menu-list">
-            <a href="./Wishlist.html">
+          <li class="main__account__left__menu-list active-account">
+            <a href="">
               <img
                 src="https://www.lotteria.vn/grs-static/images/icon-save-white.svg"
                 alt=""
@@ -268,57 +268,12 @@ function renderAccount() {
       </div>
       <div class="main__account__right">
         <header class="main__account__right__header">
-          <h1>ACCOUNT INFORMATION</h1>
+          <h1>MY MENU/ WISHLIST</h1>
         </header>
         <div class="main__account__right__content">
-          <form class="formAccount">
-            <section>
-              <h2>USER INFORMATION</h2>
-              <div class="input-group">
-                <label for="">Fullname</label>
-                <input type="text" name="" id="fullName" value="${
-                  element.fullName
-                }" required/>
-              </div>
-              <div class="input-group">
-                <label for="">Date of birth</label>
-                <input type="date" name="" id="dob" value="${element.dob}"/>
-              </div>
-              <div class="input-group">
-                <label for="">Phone number</label>
-                <input type="text" name="" id="phoneNumber" value="${
-                  element.phoneNumber
-                }"/>
-              </div>
-              <div class="input-group">
-                <label for="">Email</label>
-                <input type="email" name="" id="" value="${
-                  element.emailCurrent
-                }"/>
-              </div>
-            </section>
-            <section>
-              <h2>CHANGE YOUR PASSWORD</h2>
-              <div class="input-group">
-                <label for="">Old password</label>
-                <input type="password" name="" id="" value="${
-                  element.passwordCurrent
-                }"/>
-              </div>
-              <div class="input-group">
-                <label for="">New password</label>
-                <input type="password" name="" id="" />
-              </div>
-              <div class="input-group">
-                <label for="">Re-enter your password</label>
-                <input type="password" name="" id="" />
-              </div>
-            </section>
-            <div class="btns">
-              <button class="sub-btn" >Withdraw account</button>
-              <button class="saveInfor" >Save information</button>
-            </div>
-          </form>
+            <ul class="product">
+            </ul>
+          </div>
         </div>
       </div>
     </article>
@@ -330,27 +285,68 @@ function renderAccount() {
 }
 renderAccount();
 
-// UPDATE PERSONAL INFORMATION
-let formAccount = document.querySelector(".formAccount");
-let fullName = document.querySelector("#fullName");
-let dob = document.querySelector("#dob");
-let phoneNumber = document.querySelector("#phoneNumber");
-let test = 1;
-formAccount.addEventListener("submit", (e) => {
-  e.preventDefault();
-  currentAccountLocal[0].fullName = fullName.value;
-  currentAccountLocal[0].dob = dob.value;
-  currentAccountLocal[0].phoneNumber = phoneNumber.value;
-  "asdsad".toUpperCase();
-  Swal.fire({
-    position: "center",
-    icon: "success",
-    title: "Update information successfully!!!",
-    customClass: "swal-wide",
-    showConfirmButton: false,
-    timer: 1500,
-  }).then(() => {
-    window.location.href = "./AccInfor.html";
-  });
-  renderAccount();
-});
+// DOM RIGHT CONTENT
+let ulFavorite = document.querySelector(".product");
+
+// RENDER FAVORITE
+function renderFavorite() {
+  let liFavoriteHtmls = "";
+  let productsLocal = JSON.parse(localStorage.getItem("FFproducts")) || [];
+  for (let i = 0; i < productsLocal.length; i++) {
+    if (productsLocal[i].wishlist) {
+      liFavoriteHtmls += `
+        <li class="product__item">
+                <div class="product__item__photo">
+                  <a href="./Detail_Product.html">
+                    <img
+                      src="../../ASSET/IMAGE/PRODUCT/${productsLocal[i].image}"
+                      alt=""
+                    />
+                  </a>
+                  <i
+                    onclick="addFavorite(${productsLocal[i].productId})"
+                    class="fa-regular fa-heart red-heart"
+                  ></i>
+                </div>
+                <div class="product__item__content">
+                  <h3 class="name__item">
+                    <a href="./Detail_Product.html">${
+                      productsLocal[i].productName
+                    }</a>
+                  </h3>
+                  <div class="product__item__detals">
+                    <p>${productsLocal[i].details[0] || ""}</p>
+                    <p>${productsLocal[i].details[0] || ""}</p>
+                  </div>
+                  <div class="product__item__price">
+                    <p>${productsLocal[i].discountPrice.toLocaleString()} ₫</p>
+                    ${
+                      productsLocal[i].price
+                        ? `
+                    <p>
+                      <span>${productsLocal[i].price} ₫</span>
+                    </p>`
+                        : ""
+                    }
+                  </div>
+                </div>
+              </li>
+        `;
+    }
+  }
+  ulFavorite.innerHTML = liFavoriteHtmls;
+}
+
+renderFavorite();
+let favorites = document.querySelectorAll(".fa-heart");
+
+// =======================
+// ADD/REMOVE FAVORITE
+function addFavorite(id) {
+  let productsLocal = JSON.parse(localStorage.getItem("FFproducts")) || [];
+  let index = productsLocal.findIndex((pro) => pro.productId == id);
+  productsLocal[index].wishlist = !productsLocal[index].wishlist;
+  console.log("Asds");
+  localStorage.setItem("FFproducts", JSON.stringify(productsLocal));
+  renderFavorite();
+}

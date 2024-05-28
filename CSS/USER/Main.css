@@ -14,6 +14,7 @@
 
 .main{
     padding-top: 140px;
+    margin-bottom: 50px;
 }
 
 .signOutOverlay,
@@ -98,9 +99,6 @@
 
 .product{
     margin-bottom: 66px;
-}
-
-.product{
     flex-wrap: wrap;
     display: flex;
     row-gap: 30px;
@@ -313,7 +311,6 @@ h3{
     }
 }
 
-
 /* ==================== */
 /* SIGN OUT */
 
@@ -327,7 +324,6 @@ h3{
     justify-content: center;
     background-color: rgba(0, 0, 0, 0.6);
 }
-
 
 .signOutModal{
     border-radius: 20px;

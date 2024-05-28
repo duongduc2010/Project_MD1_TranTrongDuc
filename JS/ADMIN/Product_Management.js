@@ -136,6 +136,7 @@ formAddmodal.addEventListener("submit", (e) => {
       discountPrice: +disPriceInput.value,
       details: detailsInput.value.split(","),
       status: true,
+      wishlist: false,
       createDate: new Date().toISOString().split("T")[0],
     };
 
@@ -143,9 +144,10 @@ formAddmodal.addEventListener("submit", (e) => {
     if (isEdit) {
       productsLocal[editIndex].productName = productName.value;
       productsLocal[editIndex].image = imageInput.value;
-      productsLocal[editIndex].price = priceInput.value;
-      productsLocal[editIndex].stock = stockInput.value;
-      productsLocal[editIndex].disPriceInput = imageInput.value;
+      productsLocal[editIndex].price = +priceInput.value;
+      productsLocal[editIndex].stock = +stockInput.value;
+      productsLocal[editIndex].discountPrice = +disPriceInput.value;
+      productsLocal[editIndex].details = detailsInput.value.split(",");
       productsLocal[editIndex].categoryName = selectCategory.value;
     } else {
       productsLocal.push(products);
@@ -218,7 +220,7 @@ function movePage(index) {
   renderProduct();
 }
 
-// RENDER
+// RENDER PRODUCT
 
 function renderProduct(data) {
   let productsLocal = JSON.parse(localStorage.getItem("FFproducts")) || [];
@@ -265,11 +267,13 @@ function renderProduct(data) {
                       productsLocal[i].image
                     }" alt="img" />           
                     </td>
-                    <td>${productsLocal[i].price}</td>
+                    <td>${productsLocal[i].price.toLocaleString()} ₫</td>
                     <td>${productsLocal[i].stock}</td>
                     <td>${catFind.categoryName}</td>
                     <td>${productsLocal[i].details}</td>
-                    <td>${productsLocal[i].discountPrice}</td>
+                    <td>${productsLocal[
+                      i
+                    ].discountPrice.toLocaleString()} ₫</td>
                     <td>${productsLocal[i].status ? "Active" : "Block"}</td>
                     <td>${productsLocal[i].createDate}</td>
                     <td><button onclick="Edit(${

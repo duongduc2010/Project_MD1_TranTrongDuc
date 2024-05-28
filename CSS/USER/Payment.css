@@ -1,0 +1,98 @@
+@import url(./LAYOUTS/Header.css);
+@import url(./LAYOUTS/Footer.css);
+
+/* IMPORT BASE */
+@import url(../BASE/Base.css);
+@import url(../BASE/Button.css);
+@import url(../BASE/Form.css);
+
+/* ==================== */
+/* PAYMENT */
+
+i{
+    cursor: pointer;
+}
+
+.header, .main{
+    padding: 0 120px;   
+}
+
+.main{
+    padding-top: 140px;
+    margin-bottom: 50px;
+    gap: 20px;
+    display: flex;
+}
+
+.main__left{
+    flex: 2
+}
+
+.main__left__cart{
+
+}
+
+.main__left__cart header{
+    justify-content: space-between;
+    /* margin-bottom: 20px; */
+}
+
+.main__left__cart
+
+.list-cart{
+    justify-content: space-between;
+    padding: 20px 0;
+    border-bottom: 1px solid var(--color-theme);
+}
+
+.item-cart-left{
+    gap: 20px;
+}
+
+.item-cart-left img{
+    width: 120px;
+}
+
+.item-cart-right{
+    gap: 20px;
+}
+
+.quantity-btn{
+    padding: 2px;
+    width: 35px;
+}
+
+.quantity-group > p{
+    margin: 0 5px;
+}
+
+
+.main__right{
+    flex: 1;
+}
+
+.main__right section{
+    padding: 10px;
+    width: 400px;
+    background-color: white;
+    margin-bottom: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    
+}
+
+.border-dot{
+    margin: 16px 0;
+    border: 1px dashed #6B6C6C;
+
+}
+
+
+.total-price{
+    justify-content: space-between;
+}
+
+.btn-continue{
+    text-align: center;
+}
+

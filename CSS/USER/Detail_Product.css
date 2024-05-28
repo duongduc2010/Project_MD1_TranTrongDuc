@@ -1,0 +1,82 @@
+/* IMPORT LAYOUTS */
+@import url(./LAYOUTS/Header.css);
+@import url(./LAYOUTS/Footer.css);
+
+/* IMPORT BASE */
+@import url(../BASE/Base.css);
+@import url(../BASE/Button.css);
+@import url(../BASE/Form.css);
+
+.header, .main{
+    padding: 0 120px;   
+}
+
+.main{
+    padding-top: 140px;
+    margin-bottom: 50px;
+}
+
+.back-field{
+    margin-bottom: 30px;
+    text-align: right;
+}
+
+#btnBack{
+    border: none;
+    border-radius: 40px;
+    background-color: #fff;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, .15);
+    color: #ff5b6a;
+    display: inline-block;
+    font-weight: 700;
+    padding: 5px 17px;
+}
+
+.main__content{
+    align-items: center;
+}
+
+.img-field{
+    margin-right: 70px;
+}
+
+.img-field img{
+    width: 400px;
+}
+
+.information{
+ flex: 1;
+ padding-bottom: 40px;
+}
+
+.productName{
+    font-size: 28px;
+    font-weight: 700;
+    margin-bottom: 16px;
+}
+
+.discountPrice{
+    color: #ff5b6a;
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 14px;
+}
+
+.price{
+    background: url(https://www.lotteria.vn/grs-static/images/icon-discount.svg) no-repeat;
+    padding-left: 24px;
+    min-height: 20px;
+    margin-bottom: 20px;
+    margin-top: -5px;
+    color: #6b6c6c;
+    text-decoration: line-through;
+}
+
+.border-dash{
+    border: 1px dashed #c4c4c4;
+    margin: 20px 0;
+}
+
+.list-details p{
+    margin-bottom: 8px;
+}

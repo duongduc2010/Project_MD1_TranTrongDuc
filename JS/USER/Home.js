@@ -1,5 +1,188 @@
+const menuDot = document.querySelector(".category__dot");
+const ulCategory = document.querySelector(".category__list");
+const ulProduct = document.querySelector(".product");
+
+let productsLocal = JSON.parse(localStorage.getItem("FFproducts")) || [];
+let productsCartLocal =
+  JSON.parse(localStorage.getItem("FFproductsCart")) || [];
+// ===========================
+// RENDER CATEGORY
+
+let categoryChoose = null;
+
+let pageSize = 9;
+let totalPage;
+let currentPage = 1;
+let currentItem = 0;
+
+let categoriesLocal = JSON.parse(localStorage.getItem("FFcategories")) || [];
+categoriesLocal = categoriesLocal.filter((el) => el.status == true);
+categoryChoose = categoriesLocal[0].categoryId;
+
+function renderCategory(data) {
+  let categoriesLocal = JSON.parse(localStorage.getItem("FFcategories")) || [];
+  if (Array.isArray(data)) {
+    categoriesLocal = data;
+  }
+
+  totalPage = Math.ceil(categoriesLocal.length / pageSize);
+  let dot = "";
+  for (let i = 1; i <= totalPage; i++) {
+    if (currentPage == i) {
+      dot += `<span onclick="moveDot(${i})" class="active__dot"></span>`;
+    } else {
+      dot += `<span onclick="moveDot(${i})"></span>`;
+    }
+  }
+
+  menuDot.innerHTML = dot;
+  let start = 0;
+  let end = 0;
+  start = (currentPage - 1) * pageSize;
+  end = pageSize * currentPage - 1;
+
+  let liHtml = "";
+  if (categoriesLocal.length - 1 <= end) {
+    end = categoriesLocal.length - 1;
+    start = end - (pageSize - 1);
+    if (start < 0) {
+      start = 0;
+    }
+  }
+
+  for (let i = start; i <= end; i++) {
+    if (categoriesLocal[i].status == true) {
+      liHtml += `
+      <li 
+        onclick="moveCat(${
+          categoriesLocal[i].categoryId
+        })" class="category__list__items" 
+      >
+        <a>
+          <img
+            class=" ${
+              categoryChoose == categoriesLocal[i].categoryId
+                ? "active-border"
+                : ""
+            }"
+            src="../../ASSET/IMAGE/CATEGORY/${categoriesLocal[i].image}"
+            alt=""
+          />
+          <h4 class="category__list__items-name ${
+            categoryChoose == categoriesLocal[i].categoryId ? "active-name" : ""
+          }">${categoriesLocal[i].categoryName}</h4>
+        </a>
+      </li>
+      `;
+    }
+  }
+  ulCategory.innerHTML = liHtml;
+}
+
+// MOVE DOT
+function moveDot(index) {
+  currentPage = index;
+  renderCategory();
+}
+
+// =======================
+// ADD/REMOVE FAVORITE
+let favorites = document.querySelectorAll(".fa-heart");
+function addFavorite(id) {
+  let productsLocal = JSON.parse(localStorage.getItem("FFproducts")) || [];
+  let index = productsLocal.findIndex((pro) => pro.productId == id);
+  productsLocal[index].wishlist = !productsLocal[index].wishlist;
+  localStorage.setItem("FFproducts", JSON.stringify(productsLocal));
+  // renderProduct();
+  moveCat(categoryChoose);
+}
+
+// =====================
+// RENDER PRODUCT
+function renderProduct(data) {
+  let productsLocal = JSON.parse(localStorage.getItem("FFproducts")) || [];
+
+  if (Array.isArray(data)) {
+    productsLocal = data;
+  }
+
+  let liHtml = "";
+  for (let i = 0; i < productsLocal.length; i++) {
+    if (productsLocal[i].status) {
+      liHtml += `
+          <li  class="product__item">
+          <div class="product__item__photo">
+            <a onclick="moveDetail(${productsLocal[i].productId})">
+              <img
+                src="../../ASSET/IMAGE/PRODUCT/${productsLocal[i].image}"
+                alt=""
+              />
+            </a>
+            <i onclick="addFavorite(${
+              productsLocal[i].productId
+            })" class="fa-regular fa-heart ${
+        productsLocal[i].wishlist ? "red-heart" : ""
+      }"></i>
+          </div>
+          <div class="product__item__content">
+            <h3 class="name__item">
+              <a onclick="moveDetail(${productsLocal[i].productId})">${
+        productsLocal[i].productName
+      }</a>
+            </h3>
+            <div class="product__item__detals">
+              <p>${productsLocal[i].details[0] || ""}</p>
+              <p>${productsLocal[i].details[1] || ""}</p>
+            </div>
+            <div class="product__item__price">
+              <p>${productsLocal[i].discountPrice.toLocaleString()} ₫</p>
+              ${
+                productsLocal[i].price.toLocaleString() != 0
+                  ? `<p>
+                <span>${productsLocal[i].price.toLocaleString()} ₫</span>
+              </p>`
+                  : ""
+              }
+            </div>
+            <div class="product__item__btn">
+              <button style="width: 100%" onclick="addCart(${
+                productsLocal[i].productId
+              })" class="btn-cart">Add to cart</button>
+            </div>
+          </div>
+        </li>;
+          `;
+    }
+  }
+
+  ulProduct.innerHTML = liHtml;
+}
+
+// =======================
+// RENDER PRODUCT WITH CATEGORY
+
+// renderProduct();
+
+// renderCategory();
+
+function moveCat(id) {
+  let productsLocal = JSON.parse(localStorage.getItem("FFproducts")) || [];
+  let productFilter = productsLocal.filter((pro) => pro.categoryName == id);
+  categoryChoose = id;
+  renderCategory();
+  renderProduct(productFilter);
+}
+moveCat(categoryChoose);
+
+function moveDetail(id) {
+  // let productsLocal = JSON.parse(localStorage.getItem("FFproducts")) || [];
+  // let index = productsLocal.findIndex((pro) => pro.productId == id);
+  window.location.href = `Detail_Product.html?id=${id}`;
+}
+
 // ============================
-// HEADER
+// ============================
+// COMMON
 
 // OPEN+CLOSE LANGUAGE AND DOWNLOAD
 const headerLanguage = document.querySelector(".header__language");
@@ -61,20 +244,13 @@ btnCancel.addEventListener("click", (e) => {
   signOutOverlay.classList.toggle("hidden");
 });
 
-// ==========================
-// MAIN
-
-let productsLocal = JSON.parse(localStorage.getItem("FFproducts")) || [];
-let productsCartLocal =
-  JSON.parse(localStorage.getItem("FFproductsCart")) || [];
-
 // ========================
 // CART
 const cartIcon = document.querySelector("#cartIcon");
 const cartOverlay = document.querySelector(".cartOverlay");
 const cartModal = document.querySelector(".cartModal");
 const ulCart = document.querySelector("#ulCart");
-const quantity = document.querySelector("#quantity");
+// const quantity = document.querySelector("#quantity");
 const priceCart = document.querySelector("#totalPrice");
 const quantityCart = document.querySelector(".quantity-cart");
 
@@ -168,164 +344,3 @@ function delCart(index) {
   productsCartLocal.splice(index, 1);
   renderCart();
 }
-
-// =======================
-// ADD/REMOVE FAVORITE
-let favorites = document.querySelectorAll(".fa-heart");
-function addFavorite(index) {
-  if (!favorites[index].classList.contains("red-heart")) {
-    favorites[index].classList.add("red-heart");
-  } else {
-    favorites[index].classList.remove("red-heart");
-  }
-}
-
-// ===========================
-// RENDER CATEGORY
-const menuDot = document.querySelector(".category__dot");
-const ulCategory = document.querySelector(".category__list");
-let categoryChoose = null;
-
-let pageSize = 9;
-let totalPage = 1;
-let currentPage = 1;
-let currentItem = 0;
-
-// MOVE DOT
-function moveDot(index) {
-  currentPage = index;
-  renderCategory();
-}
-
-let categoriesLocal = JSON.parse(localStorage.getItem("FFcategories")) || [];
-categoryChoose = categoriesLocal[0].categoryId;
-
-function renderCategory(data) {
-  let categoriesLocal = JSON.parse(localStorage.getItem("FFcategories")) || [];
-
-  if (Array.isArray(data)) {
-    categoriesLocal = data;
-  }
-
-  totalPage = Math.ceil(categoriesLocal.length / pageSize);
-  let dot = "";
-  for (let i = 1; i <= totalPage; i++) {
-    if (currentPage == i) {
-      dot += `<span onclick="moveDot(${i})" class="active__dot"></span>`;
-    } else {
-      dot += `<span onclick="moveDot(${i})"></span>`;
-    }
-  }
-
-  menuDot.innerHTML = dot;
-  let start = 0;
-  let end = 0;
-  start = (currentPage - 1) * pageSize;
-  end = pageSize * currentPage - 1;
-
-  let liHtml = "";
-  if (categoriesLocal.length - 1 <= end) {
-    end = categoriesLocal.length - 1;
-    start = end - (pageSize - 1);
-    if (start < 0) {
-      start = 0;
-    }
-  }
-
-  for (let i = start; i <= end; i++) {
-    liHtml += `
-    <li 
-      onclick="moveCat(${
-        categoriesLocal[i].categoryId
-      })" class="category__list__items" 
-    >
-      <a>
-        <img
-          class=" ${
-            categoryChoose == categoriesLocal[i].categoryId
-              ? "active-border"
-              : ""
-          }"
-          src="../../ASSET/IMAGE/CATEGORY/${categoriesLocal[i].image}"
-          alt=""
-        />
-        <h4 class="category__list__items-name ${
-          categoryChoose == categoriesLocal[i].categoryId ? "active-name" : ""
-        }">${categoriesLocal[i].categoryName}</h4>
-      </a>
-    </li>
-    `;
-  }
-  ulCategory.innerHTML = liHtml;
-}
-
-// =====================
-// RENDER PRODUCT
-const ulMain = document.querySelector(".product");
-function renderProduct(data) {
-  let productsLocal = JSON.parse(localStorage.getItem("FFproducts")) || [];
-
-  if (Array.isArray(data)) {
-    productsLocal = data;
-  }
-
-  let liHtml = "";
-  for (let i = 0; i < productsLocal.length; i++) {
-    liHtml += `
-        <li  class="product__item">
-        <div class="product__item__photo">
-          <a href="./Detail_Product.html">
-            <img
-              src="../../ASSET/IMAGE/PRODUCT/${productsLocal[i].image}"
-              alt=""
-            />
-          </a>
-          <i onclick="addFavorite(${i})" class="fa-regular fa-heart"></i>
-        </div>
-        <div class="product__item__content">
-          <h3 class="name__item">
-            <a href="">${productsLocal[i].productName}</a>
-          </h3>
-          <div class="product__item__detals">
-            <p>${productsLocal[i].details[0] || ""}</p>
-            <p>${productsLocal[i].details[1] || ""}</p>
-          </div>
-          <div class="product__item__price">
-            <p>${productsLocal[i].discountPrice.toLocaleString()} ₫</p>
-            ${
-              productsLocal[i].price.toLocaleString() != 0
-                ? `<p>
-              <span>${productsLocal[i].price.toLocaleString()} ₫</span>
-            </p>`
-                : ""
-            }
-          </div>
-          <div class="product__item__btn">
-            <button style="width: 100%" onclick="addCart(${
-              productsLocal[i].productId
-            })" class="btn-cart">Add to cart</button>
-          </div>
-        </div>
-      </li>;
-        `;
-  }
-
-  ulMain.innerHTML = liHtml;
-}
-
-// renderProduct();
-
-// renderCategory();
-
-// =======================
-// RENDER PRODUCT WITH CATEGORY
-
-function moveCat(id) {
-  let productsLocal = JSON.parse(localStorage.getItem("FFproducts")) || [];
-  let productFilter = productsLocal.filter((pro) => pro.categoryName == id);
-  categoryChoose = id;
-  renderCategory();
-  renderProduct(productFilter);
-}
-
-moveCat(categoryChoose);
