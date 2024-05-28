@@ -1,11 +1,10 @@
-const accountIcon = document.querySelector("#accountIcon");
-const formSignUp = document.querySelector(".signUp");
-const modalSignUp = document.querySelector(".modal-signUp");
+const signUpModal = document.querySelector(".signUpModal");
 const emailInput = document.querySelector("#emailInput");
 const passwordInput = document.querySelector("#passwordInput");
 const cfPassword = document.querySelector("#cfPassword");
 const ShowPassword = document.querySelector("#ShowPassword");
 const ShowCfPassword = document.querySelector("#ShowCfPassword");
+const fullNameInput = document.querySelector("#fullNameInput");
 // ==========================
 // VALIDATE INPUT
 // SHOW ERROR
@@ -78,7 +77,7 @@ function checkMatchPassword(passwordInput, cfPassword) {
     showError(cfPassword, "not be empty");
     return false;
   } else if (passwordInput.value != cfPassword.value) {
-    showError(cfPassword, "Password is not match");
+    showError(cfPassword, "Passwords must not match");
     return false;
   } else {
     showSuccess(cfPassword);
@@ -87,9 +86,15 @@ function checkMatchPassword(passwordInput, cfPassword) {
 }
 
 // SUBMIT FORM SIGN UP
-formSignUp.addEventListener("submit", (e) => {
+signUpModal.addEventListener("submit", (e) => {
   e.preventDefault();
-  const isNotEmpty = checkEmpty([emailInput, passwordInput, cfPassword]);
+  const isNotEmpty = checkEmpty([
+    fullNameInput,
+    emailInput,
+    passwordInput,
+    cfPassword,
+  ]);
+  const isNameValid = checkLengthInput(fullNameInput, "Password", 6, 12);
   const isPasswordLengthValid = checkLengthInput(
     passwordInput,
     "Password",
@@ -99,12 +104,18 @@ formSignUp.addEventListener("submit", (e) => {
   const isEmailValid = checkEmail(emailInput);
   const isPasswordMatch = checkMatchPassword(passwordInput, cfPassword);
 
-  if (isNotEmpty && isPasswordLengthValid && isEmailValid && isPasswordMatch) {
+  if (
+    isNameValid &&
+    isNotEmpty &&
+    isPasswordLengthValid &&
+    isEmailValid &&
+    isPasswordMatch
+  ) {
     // SIGN UP SUCCESFULL
     const usersLocal = JSON.parse(localStorage.getItem("FFusers")) || [];
     const user = {
       id: Math.floor(Math.random() * 9999999999),
-      username: "",
+      username: fullNameInput.value,
       email: emailInput.value,
       password: passwordInput.value,
       status: true,
@@ -128,16 +139,6 @@ formSignUp.addEventListener("submit", (e) => {
       window.location.href = "./SignIn.html";
     });
   }
-  // else {
-  //   // SIGN UP ERROR
-  //   Swal.fire({
-  //     icon: "error",
-  //     title: "Failed",
-  //     customClass: "swal-wide",
-  //     text: "Password is not match!",
-  //     confirmButtonText: "Try again",
-  //   });
-  // }
 });
 
 // SHOW PASSWORD

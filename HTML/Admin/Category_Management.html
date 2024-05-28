@@ -42,13 +42,35 @@
         />
 
         <p>Tran Trong Duc</p>
-        <i class="fa-solid fa-chevron-down"></i>
+        <i class="fa-solid fa-chevron-down">
+          <ul class="sub__menu__account hidden">
+            <li>
+              <a style="text-transform: none" href="#">
+                <img
+                  src="https://www.lotteria.vn/grs-static/images/icon-account-2.svg"
+                  alt=""
+                />
+                Account</a
+              >
+            </li>
+
+            <li id="signOut">
+              <a>
+                <img
+                  src="https://www.lotteria.vn/grs-static/images/icon-logout.svg"
+                  alt=""
+                />
+                Sign out</a
+              >
+            </li>
+          </ul>
+        </i>
       </div>
     </header>
 
     <!-- MAIN -->
 
-    <main class="main flex">
+    <main class="main">
       <!-- NAV BAR -->
 
       <nav class="main__nav">
@@ -74,10 +96,10 @@
       <!-- CONTENT -->
 
       <section class="main__content">
-        <h1 style="margin-bottom: 20px">Skill</h1>
+        <h1 style="margin-bottom: 20px">Category</h1>
         <article>
           <header class="main__content__header flex">
-            <button id="openModal" class="btn-add">Add new category</button>
+            <button id="openForm" class="btn-add">Add new category</button>
             <div>
               <input class="search-input" type="text" name="" id="" />
               <button style="padding: 7px" id="btn-search">Search</button>
@@ -93,7 +115,7 @@
                 <th>Image</th>
                 <th>Status</th>
                 <th>Created date</th>
-                <th colspan="3">Action</th>
+                <th>Action</th>
               </tr>
             </thead>
             <tbody></tbody>
@@ -101,13 +123,9 @@
         </article>
 
         <section
+          class="flex"
           id="pagination"
-          style="
-            display: flex;
-            align-items: center;
-            justify-content: end;
-            gap: 24px;
-          "
+          style="justify-content: end; gap: 24px"
         >
           <!-- <div>
             <select name="" id="" onchange="changePageSize(event)">
@@ -116,7 +134,7 @@
               <option value="15">15</option>
             </select>
           </div> -->
-          <div style="display: flex; justify-content: end; align-items: center">
+          <div class="flex" style="justify-content: end">
             <button onclick="changePage(-1)">Previous</button>
             <p id="page-list"></p>
             <button onclick="changePage(1)">Next</button>
@@ -125,30 +143,56 @@
       </section>
     </main>
 
-    <div class="formAdd">
-      <div class="modal">
+    <!-- FORM ADD -->
+
+    <div class="formAddOverlay flex hidden">
+      <div class="formAddmodal">
         <header class="modal__header flex">
           <h3>New skill</h3>
-          <i id="closeModal" class="fa-solid fa-xmark"></i>
+          <i id="closeForm" class="fa-solid fa-xmark"></i>
         </header>
         <form class="modal__form">
-          <div>
+          <div class="scope-input">
             <label for="">Category name</label>
             <input id="categoryName" type="text" />
             <span></span>
           </div>
-          <div>
-            <label for="">Image</label>
-            <input id="imageInput" type="text" />
+          <div class="scope-input">
+            <label for="input-image" class="label-product pointer"
+              >Image:
+            </label>
+            <input type="text" name="" id="imageInput" />
+            <!-- <input
+              id="input-image"
+              type="file"
+              accept="image/*"
+              hidden
+              onchange="convertToBase64()"
+            />
+            <img id="image-product" width="100px" src="" alt="img" /> -->
             <span></span>
           </div>
           <footer class="modal__footer flex">
-            <button type="button" class="sub-btn" id="closeModal">
-              Cancel
-            </button>
+            <button type="button" class="sub-btn" id="closeForm">Cancel</button>
             <button id="submitForm">Add</button>
           </footer>
         </form>
+      </div>
+    </div>
+
+    <div class="signOutOverlay flex hidden">
+      <div class="signOutModal">
+        <img
+          src="https://www.lotteria.vn/grs-static/images/illus-4.png"
+          alt=""
+        />
+        <p>Want to sign out?</p>
+        <div class="signOutModal__confirm">
+          <button class="signOutModal__confirm-cancel" id="btnCancel">
+            Cancel
+          </button>
+          <button class="signOutModal__confirm-ok" id="btnOK">OK</button>
+        </div>
       </div>
     </div>
 

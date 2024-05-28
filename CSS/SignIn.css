@@ -6,7 +6,7 @@
 /* ============ */
 /* SIGN IN */
 
-.signIn{
+.signInOverlay{
     position: fixed;
     top: 0;
     left: 0;
@@ -14,12 +14,10 @@
     bottom: 0;
     background-color: rgba(0, 0, 0, 0.8);
     z-index: 1000;
-    display: flex;
     justify-content: center;
-    align-items: center;
 }
 
-.modal-signIn{
+.signInModal{
     background-color: #fffcfe ;
     padding: 22px 30px;
     width: 400px;
@@ -59,7 +57,6 @@
 }
 
 .help{
-    display: flex;
     justify-content: space-between;
     margin: 10px 0;
 }
@@ -71,7 +68,6 @@
 
 .other-connection{
     margin: 20px 0;
-    display: flex;
     gap: 10px;
 }
 

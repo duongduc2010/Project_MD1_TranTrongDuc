@@ -1,60 +1,91 @@
-// DOM ACCOUNT ICON
+// ============================
+// HEADER
+
+// OPEN+CLOSE LANGUAGE AND DOWNLOAD
+const headerLanguage = document.querySelector(".header__language");
+const headerDownloadApp = document.querySelector(".header__downloadApp");
+const languageInner = document.querySelector(".header__language__inner");
+const downloadInner = document.querySelector(".header__downloadApp__inner");
+
+headerLanguage.addEventListener("click", (e) => {
+  e.stopPropagation();
+  languageInner.classList.toggle("hidden");
+});
+
+headerDownloadApp.addEventListener("click", (e) => {
+  e.stopPropagation();
+  downloadInner.classList.toggle("hidden");
+});
+
+window.addEventListener("click", () => {
+  languageInner.classList.add("hidden");
+  downloadInner.classList.add("hidden");
+});
+
+// OPEN + CLOSE SUBACCOUNT
 const accountIcon = document.querySelector("#accountIcon");
 const subAccount = document.querySelector(".sub__menu__account");
-// DOM MAIN
-const ulMain = document.querySelector(".main__wrapped");
-// DOM CART
-const cartIcon = document.querySelector("#cartIcon");
-const cartOverlay = document.querySelector(".cart-overlay");
-const cart = document.querySelector(".cart");
-const ulCart = document.querySelector("#ulCart");
-let quantity = document.querySelector("#quantity");
-// =====================
-// SUBACCOUNT
-// OPEN SUBACCOUNT
+
 accountIcon.addEventListener("click", (e) => {
   e.stopPropagation();
-  if (!subAccount.classList.contains("open-subaccount")) {
-    subAccount.classList.add("open-subaccount");
-  } else {
-    subAccount.classList.remove("open-subaccount");
-  }
+  subAccount.classList.toggle("hidden");
 });
-// CLOSE SUBACCOUNT
+
 subAccount.addEventListener("click", (e) => {
   e.stopPropagation();
 });
 
 window.addEventListener("click", () => {
-  subAccount.classList.remove("open-subaccount");
+  subAccount.classList.add("hidden");
 });
 
-// =====================
-//BACK UP LIST MEAL
+// SIGN OUT
+const btnCancel = document.querySelector("#btnCancel");
+const dbtnOK = document.querySelector("#btnOK");
+const signOutOverlay = document.querySelector(".signOutOverlay");
+const signOut = document.querySelector("#signOut");
 
-let listMealLocal = JSON.parse(localStorage.getItem("list_meal")) || [];
-let listCartLocal = JSON.parse(localStorage.getItem("list_cart")) || [];
+signOutOverlay.addEventListener("click", (e) => {
+  e.stopPropagation();
+});
 
-// =====================
-// RENDER LIST MEAL
+signOut.addEventListener("click", (e) => {
+  signOutOverlay.classList.toggle("hidden");
+});
 
-// ===============
+btnOK.addEventListener("click", () => {
+  window.location.href = "../SignIn.html";
+});
+
+btnCancel.addEventListener("click", (e) => {
+  signOutOverlay.classList.toggle("hidden");
+});
+
+let productsLocal = JSON.parse(localStorage.getItem("FFproducts")) || [];
+let productsCartLocal =
+  JSON.parse(localStorage.getItem("FFproductsCart")) || [];
+
+// ========================
 // CART
+const cartIcon = document.querySelector("#cartIcon");
+const cartOverlay = document.querySelector(".cartOverlay");
+const cartModal = document.querySelector(".cartModal");
+const ulCart = document.querySelector("#ulCart");
+const quantity = document.querySelector("#quantity");
 const priceCart = document.querySelector("#totalPrice");
 const quantityCart = document.querySelector(".quantity-cart");
-// OPEN CART
+
 cartIcon.addEventListener("click", (e) => {
   e.stopPropagation();
-  e.preventDefault();
-  cartOverlay.classList.add("openCart");
+  cartOverlay.classList.toggle("hidden");
 });
-// CLOSE CART
-cart.addEventListener("click", (e) => {
+
+cartModal.addEventListener("click", (e) => {
   e.stopPropagation();
 });
 
 window.addEventListener("click", () => {
-  cartOverlay.classList.remove("openCart");
+  cartOverlay.classList.add("hidden");
 });
 
 // RENDER CART
@@ -62,52 +93,55 @@ function renderCart() {
   let liCart = "";
   let totalPrice = 0;
   let totalCart = 0;
-  for (let i = 0; i < listCartLocal.length; i++) {
-    if (listCartLocal[i] != null) {
+  for (let i = 0; i < productsCartLocal.length; i++) {
+    if (productsCartLocal[i] != null) {
       liCart += `
-      <li class="cart__content__listItem">
+      <li class="cart__content__listItem flex">
                 <div class="img-cart">
                   <a href="">
                     <img
                       class=""
-                      src="../../IMAGE/MEALLIST/${listCartLocal[i].image}"
+                      src="../../ASSET/IMAGE/MEALLIST/${
+                        productsCartLocal[i].image
+                      }"
                       alt=""
                     />
                   </a>
                 </div>
                 <div class="details-cart">
-                  <a href="">${listCartLocal[i].nameMeal}</a>
-                  <p>${listCartLocal[i].currentPrice.toLocaleString()} ₫</p>
-                  <div class="quantity-group">
+                  <a href="">${productsCartLocal[i].productName}</a>
+                  <p>${productsCartLocal[i].discountPrice} ₫</p>
+                  <div class="quantity-group flex">
                     <button onclick="changeQuantity(${i},${
-        listCartLocal[i].quantity - 1
+        productsCartLocal[i].quantity - 1
       })" class="quantity-btn">-</button>
-                    <p id="quantity">${listCartLocal[i].quantity}</p>
+                    <p id="quantity">${productsCartLocal[i].quantity}</p>
                     <button onclick="changeQuantity(${i},${
-        listCartLocal[i].quantity + 1
+        productsCartLocal[i].quantity + 1
       })" class="quantity-btn">+</button>
                   </div>
                   <div><i onclick="delCart(${i})" class="fa-solid fa-trash"></i></div>
                 </div>
       `;
-      totalCart = totalCart + listCartLocal[i].quantity;
+      totalCart = totalCart + productsCartLocal[i].quantity;
       totalPrice =
-        totalPrice + listCartLocal[i].currentPrice * listCartLocal[i].quantity;
+        totalPrice +
+        productsCartLocal[i].discountPrice * productsCartLocal[i].quantity;
     }
   }
   quantityCart.innerHTML = totalCart;
   priceCart.innerHTML = totalPrice.toLocaleString() + " ₫";
   ulCart.innerHTML = liCart;
-  localStorage.setItem("list_cart", JSON.stringify(listCartLocal));
+  localStorage.setItem("FFproductsCart", JSON.stringify(productsCartLocal));
 }
 renderCart();
 
 // ADD ITEMS TO CART
 function addCart(index) {
-  if (listCartLocal[index] == null) {
-    listCartLocal[index] = { ...listMealLocal[index], quantity: 1 };
+  if (productsCartLocal[index] == null) {
+    productsCartLocal[index] = { ...productsLocal[index], quantity: 1 };
   } else {
-    listCartLocal[index].quantity += 1;
+    productsCartLocal[index].quantity += 1;
   }
   renderCart();
 }
@@ -116,14 +150,14 @@ function addCart(index) {
 function changeQuantity(index, newQuantity) {
   if (newQuantity <= 0) {
   } else {
-    listCartLocal[index].quantity = newQuantity;
+    productsCartLocal[index].quantity = newQuantity;
   }
   renderCart();
 }
 
 // DELETE CART
 function delCart(index) {
-  listCartLocal.splice(index, 1);
+  productsCartLocal.splice(index, 1);
   renderCart();
 }
 
@@ -137,36 +171,6 @@ function addFavorite(index) {
     favorites[index].classList.remove("red-heart");
   }
 }
-
-// ==============
-// LANGUAGE AND DOWNLOAD
-const headerLanguage = document.querySelector(".header__language");
-const headerDownloadApp = document.querySelector(".header__downloadApp");
-const languageInner = document.querySelector(".header__language__inner");
-const downloadInner = document.querySelector(".header__downloadApp__inner");
-// OPEN+CLOSE
-headerLanguage.addEventListener("click", (e) => {
-  e.stopPropagation();
-  if (!languageInner.classList.contains("open__inner")) {
-    languageInner.classList.add("open__inner");
-  } else {
-    languageInner.classList.remove("open__inner");
-  }
-});
-
-headerDownloadApp.addEventListener("click", (e) => {
-  e.stopPropagation();
-  if (!downloadInner.classList.contains("open__inner")) {
-    downloadInner.classList.add("open__inner");
-  } else {
-    downloadInner.classList.remove("open__inner");
-  }
-});
-
-window.addEventListener("click", () => {
-  languageInner.classList.remove("open__inner");
-  downloadInner.classList.remove("open__inner");
-});
 
 // ================================================
 // RENDER ACCOUNT INFORMATION
@@ -336,34 +340,6 @@ function renderAccount() {
   localStorage.setItem("current_account", JSON.stringify(currentAccountLocal));
 }
 renderAccount();
-
-// ======================
-// SIGN OUT
-const btnCancel = document.querySelector("#js-btnCancel");
-const btnOK = document.querySelector("#js-btnOK");
-const overlay = document.querySelector(".overlay");
-const signOuts = document.querySelectorAll("#signOut");
-// OPEN SIGN OUT
-overlay.addEventListener("click", (e) => {
-  e.stopPropagation();
-});
-
-signOuts.forEach((signOut) => {
-  signOut.addEventListener("click", (e) => {
-    e.preventDefault();
-    console.log("ASdsad");
-    overlay.classList.add("openOverlay");
-  });
-
-  // OK
-  btnOK.addEventListener("click", () => {
-    window.location.href = "../SignIn.html";
-  });
-  // CANCEL
-  btnCancel.addEventListener("click", (e) => {
-    overlay.classList.remove("openOverlay");
-  });
-});
 
 // UPDATE PERSONAL INFORMATION
 let formAccount = document.querySelector(".formAccount");

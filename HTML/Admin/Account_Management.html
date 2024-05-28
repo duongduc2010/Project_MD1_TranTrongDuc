@@ -43,7 +43,7 @@
 
         <p>Tran Trong Duc</p>
         <i class="fa-solid fa-chevron-down">
-          <ul class="sub__menu__account">
+          <ul class="sub__menu__account hidden">
             <li>
               <a style="text-transform: none" href="#">
                 <img
@@ -55,7 +55,7 @@
             </li>
 
             <li id="signOut">
-              <a href="">
+              <a>
                 <img
                   src="https://www.lotteria.vn/grs-static/images/icon-logout.svg"
                   alt=""
@@ -69,25 +69,25 @@
     </header>
 
     <!-- CONFIRM SIGN OUT -->
-    <div class="overlay">
-      <div class="signout">
+    <div class="signOutOverlay flex hidden">
+      <div class="signOutModal">
         <img
           src="https://www.lotteria.vn/grs-static/images/illus-4.png"
           alt=""
         />
         <p>Want to sign out?</p>
-        <div class="signout__confirm">
-          <button class="signout__confirm-cancel" id="js-btnCancel">
+        <div class="signOutModal__confirm flex">
+          <button class="signOutModal__confirm-cancel" id="btnCancel">
             Cancel
           </button>
-          <button class="signout__confirm-ok" id="js-btnOK">OK</button>
+          <button class="signOutModal__confirm-ok" id="btnOK">OK</button>
         </div>
       </div>
     </div>
 
     <!-- MAIN -->
 
-    <main class="main flex">
+    <main class="main">
       <!-- NAV BAR -->
 
       <nav class="main__nav">
@@ -141,13 +141,9 @@
         </article>
 
         <section
+          class="flex"
           id="pagination"
-          style="
-            display: flex;
-            align-items: center;
-            justify-content: end;
-            gap: 24px;
-          "
+          style="justify-content: end; gap: 24px"
         >
           <!-- <div>
             <select name="" id="" onchange="changePageSize(event)">
@@ -156,7 +152,7 @@
               <option value="15">15</option>
             </select>
           </div> -->
-          <div style="display: flex; justify-content: end; align-items: center">
+          <div class="flex" style="justify-content: end">
             <button onclick="changePage(-1)">Previous</button>
             <p id="page-list"></p>
             <button onclick="changePage(1)">Next</button>

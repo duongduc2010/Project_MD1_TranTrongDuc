@@ -1,8 +1,6 @@
 .header{
     height: 100px;
-    display: flex;
     justify-content: space-between;
-    align-items: center;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
     position: fixed;
     background-color: white;
@@ -10,13 +8,6 @@
     left: 0;
     right: 0;
     z-index: 10;
-}
-
-.header__left,
-.header__left__nav,
-.header__right__up{
-    display: flex;
-    align-items: center;
 }
 
 .header__logo{
@@ -28,7 +19,7 @@
 }
 
 
-.header__left__nav__active{
+.active-nav{
     color: var(--color-theme);
     border-bottom: 3px solid var(--color-theme) !important;
 }
@@ -75,12 +66,8 @@
     left: 0px;
     width: 100%;
     box-shadow:  0 1px 4px rgba(0, 0, 0, .15);
-    display: none;
+    display: flex;
     z-index: 10;
-}
-
-.open__inner{
-    display: flex !important;
 }
 
 .header__language__inner{
@@ -110,7 +97,6 @@
 }
 
 .header__right__down{
-    display: flex;
     gap: 30px;
 }
 
@@ -126,15 +112,12 @@
     border-radius: 15px;
     top: 130%;
     left: -106px !important;
-    display: none;
+    display: flex;
     flex-direction: column;
     gap: 15px;
     width: 255px;
 }
 
-.open-subaccount{
-    display: flex;
-}
 
 .sub__menu__account>li>a{
     font-size: 16px;

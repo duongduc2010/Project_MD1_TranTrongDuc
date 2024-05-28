@@ -21,13 +21,17 @@
   </head>
   <body>
     <!-- SIGN UP -->
-    <div class="signUp">
-      <div class="modal-signUp">
+    <div class="signUpOverlay flex">
+      <div class="signUpModal">
         <div class="modal__header">
           <span>Sign up</span>
         </div>
 
         <form class="form__signUp" action="">
+          <div>
+            <input type="text" id="fullNameInput" placeholder="Full name" />
+            <small></small>
+          </div>
           <div>
             <input type="text" id="emailInput" placeholder="Email" />
             <small></small>
@@ -57,7 +61,7 @@
           </p>
         </div>
         <hr />
-        <div class="other-connection">
+        <div class="other-connection flex">
           <button>
             <a class="connect-with-fb" href="">Facebook</a>
           </button>

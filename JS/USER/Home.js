@@ -1,249 +1,155 @@
-// DOM ACCOUNT ICON
+// ============================
+// HEADER
+
+// OPEN+CLOSE LANGUAGE AND DOWNLOAD
+const headerLanguage = document.querySelector(".header__language");
+const headerDownloadApp = document.querySelector(".header__downloadApp");
+const languageInner = document.querySelector(".header__language__inner");
+const downloadInner = document.querySelector(".header__downloadApp__inner");
+
+headerLanguage.addEventListener("click", (e) => {
+  e.stopPropagation();
+  languageInner.classList.toggle("hidden");
+});
+
+headerDownloadApp.addEventListener("click", (e) => {
+  e.stopPropagation();
+  downloadInner.classList.toggle("hidden");
+});
+
+window.addEventListener("click", () => {
+  languageInner.classList.add("hidden");
+  downloadInner.classList.add("hidden");
+});
+
+// OPEN + CLOSE SUBACCOUNT
 const accountIcon = document.querySelector("#accountIcon");
 const subAccount = document.querySelector(".sub__menu__account");
-// DOM MAIN
-const ulMain = document.querySelector(".main__wrapped");
-// DOM CART
-const cartIcon = document.querySelector("#cartIcon");
-const cartOverlay = document.querySelector(".cart-overlay");
-const cart = document.querySelector(".cart");
-const ulCart = document.querySelector("#ulCart");
-let quantity = document.querySelector("#quantity");
-// DOM SIGN OUT
-const btnCancel = document.querySelector("#js-btnCancel");
-const btnOK = document.querySelector("#js-btnOK");
-const overlay = document.querySelector(".overlay");
-const signOut = document.querySelector("#signOut");
 
-// =====================
-// SUBACCOUNT
-// OPEN SUBACCOUNT
 accountIcon.addEventListener("click", (e) => {
   e.stopPropagation();
-  if (!subAccount.classList.contains("open-subaccount")) {
-    subAccount.classList.add("open-subaccount");
-  } else {
-    subAccount.classList.remove("open-subaccount");
-  }
+  subAccount.classList.toggle("hidden");
 });
-// CLOSE SUBACCOUNT
+
 subAccount.addEventListener("click", (e) => {
   e.stopPropagation();
 });
 
 window.addEventListener("click", () => {
-  subAccount.classList.remove("open-subaccount");
+  subAccount.classList.add("hidden");
 });
 
-// =====================
-//BACK UP LIST MEAL
-let listMeal = [
-  {
-    image: "Chicken Set.png",
-    nameMeal: "Chiken Set",
-    details: ["02 Fried Chicken", "01 French Fries"],
-    currentPrice: 87000,
-    originalPrice: 114000,
-  },
+// SIGN OUT
+const btnCancel = document.querySelector("#btnCancel");
+const btnOK = document.querySelector("#btnOK");
+const signOutOverlay = document.querySelector(".signOutOverlay");
+const signOut = document.querySelector("#signOut");
 
-  {
-    image: "HS Chicken Set.png",
-    nameMeal: "HS Chicken Set",
-    details: ["02 HS Chicken", "01 French Fries"],
-    currentPrice: 95000,
-    originalPrice: 124000,
-  },
-  {
-    image: "Shrimp Combo.png",
-    nameMeal: "Shrimp Combo",
-    details: ["01 Shrimp Burger", "01 French Fries"],
-    currentPrice: 87000,
-    originalPrice: 114000,
-  },
-  {
-    image: "Bulgogi Combo.png",
-    nameMeal: "Bulgogi Combo",
-    details: ["01 Bulgogi Burger", "01 French Fries"],
-    currentPrice: 82000,
-    originalPrice: 91000,
-  },
-  {
-    image: "Loy Set.png",
-    nameMeal: "Loy Set",
-    details: ["02 Fried Chicken", "01 Bulgogi Burger"],
-    currentPrice: 145000,
-    originalPrice: 177000,
-  },
-  {
-    image: "Lody Set.png",
-    nameMeal: "Lody Set",
-    details: ["02 Fried Chicken", "01 Spaghetti"],
-    currentPrice: 145000,
-    originalPrice: 169000,
-  },
-  {
-    image: "Lony Set.png",
-    nameMeal: "Lony Set",
-    details: ["02 Fried Chicken", "01 Bulgogi Burger"],
-    currentPrice: 195000,
-    originalPrice: 237000,
-  },
-  {
-    image: "Looking Set.png",
-    nameMeal: "Looking Set",
-    details: ["02 Fried Chicken", "01 Spaghetti"],
-    currentPrice: 220000,
-    originalPrice: 273000,
-  },
-  {
-    image: "L4 Set.png",
-    nameMeal: "L4 Set",
-    details: ["04 Fried Chicken", "01 Bulgogi Burger"],
-    currentPrice: 82000,
-    originalPrice: 91000,
-  },
-  {
-    image: "Pie Chicken.png",
-    nameMeal: "Pie Chicken",
-    details: ["", ""],
-    currentPrice: 44000,
-    originalPrice: "",
-  },
-  {
-    image: "Pie Chicken + Pepsi (M).png",
-    nameMeal: "Pie Chicken + Pepsi (M)",
-    details: ["01 Pie Chicken", "01 Pepsi (M)"],
-    currentPrice: 49000,
-    originalPrice: 58000,
-  },
-  {
-    image: "Cheese Stick.png",
-    nameMeal: "Cheese Stick",
-    details: ["", ""],
-    currentPrice: 36000,
-    originalPrice: "",
-  },
-];
+signOutOverlay.addEventListener("click", (e) => {
+  e.stopPropagation();
+});
 
-localStorage.setItem("list_meal", JSON.stringify(listMeal));
-let listMealLocal = JSON.parse(localStorage.getItem("list_meal")) || [];
-let listCartLocal = JSON.parse(localStorage.getItem("list_cart")) || [];
+signOut.addEventListener("click", (e) => {
+  signOutOverlay.classList.toggle("hidden");
+});
 
-// =====================
-// RENDER LIST MEAL
-function render() {
-  let liHtml = "";
-  for (let i = 0; i < listMealLocal.length; i++) {
-    liHtml += `
-      <li class="main__wrapped__item">
-      <div class="main__wrapped__item__photo">
-        <a href="./Detail_Product.html">
-          <img
-            src="../../ASSET/IMAGE/MEALLIST/${listMealLocal[i].image}"
-            alt=""
-          />
-        </a>
-        <i onclick="addFavorite(${i})" class="fa-regular fa-heart"></i>
-      </div>
-      <div class="main__wrapped__item__content">
-        <h3 class="name__item">
-          <a href="">${listMealLocal[i].nameMeal}</a>
-        </h3>
-        <div class="main__wrapped__item__detals">
-          <p>${listMealLocal[i].details[0]}</p>
-          <p>${listMealLocal[i].details[1]}</p>
-        </div>
-        <div class="main__wrapped__item__price">
-          <p>${listMealLocal[i].currentPrice.toLocaleString()} ₫</p>
-          ${
-            listMealLocal[i].originalPrice.toLocaleString()
-              ? `<p>
-            <span>${listMealLocal[i].originalPrice.toLocaleString()} ₫</span>
-          </p>`
-              : ""
-          }
-        </div>
-        <div class="main__wrapped__item__btn">
-          <button style="width: 100%" onclick="addCart(${i})" class="btn-cart">Add to cart</button>
-        </div>
-      </div>
-    </li>;
-      `;
-  }
-  ulMain.innerHTML = liHtml;
-}
+btnOK.addEventListener("click", () => {
+  window.location.href = "../SignIn.html";
+});
 
-render();
+btnCancel.addEventListener("click", (e) => {
+  signOutOverlay.classList.toggle("hidden");
+});
 
-// ===============
+// ==========================
+// MAIN
+
+let productsLocal = JSON.parse(localStorage.getItem("FFproducts")) || [];
+let productsCartLocal =
+  JSON.parse(localStorage.getItem("FFproductsCart")) || [];
+
+// ========================
 // CART
+const cartIcon = document.querySelector("#cartIcon");
+const cartOverlay = document.querySelector(".cartOverlay");
+const cartModal = document.querySelector(".cartModal");
+const ulCart = document.querySelector("#ulCart");
+const quantity = document.querySelector("#quantity");
 const priceCart = document.querySelector("#totalPrice");
 const quantityCart = document.querySelector(".quantity-cart");
-// OPEN CART
+
 cartIcon.addEventListener("click", (e) => {
   e.stopPropagation();
-  e.preventDefault();
-  cartOverlay.classList.add("openCart");
+  cartOverlay.classList.toggle("hidden");
 });
-// CLOSE CART
-cart.addEventListener("click", (e) => {
+
+cartModal.addEventListener("click", (e) => {
   e.stopPropagation();
 });
 
 window.addEventListener("click", () => {
-  cartOverlay.classList.remove("openCart");
+  cartOverlay.classList.add("hidden");
 });
+
 // RENDER CART
 function renderCart() {
   let liCart = "";
   let totalPrice = 0;
   let totalCart = 0;
-  for (let i = 0; i < listCartLocal.length; i++) {
-    if (listCartLocal[i] != null) {
+  for (let i = 0; i < productsCartLocal.length; i++) {
+    if (productsCartLocal[i] != null) {
       liCart += `
-      <li class="cart__content__listItem">
+      <li class="cart__content__listItem flex">
                 <div class="img-cart">
                   <a href="">
                     <img
                       class=""
-                      src="../../ASSET/IMAGE/MEALLIST/${listCartLocal[i].image}"
+                      src="../../ASSET/IMAGE/PRODUCT/${
+                        productsCartLocal[i].image
+                      }"
                       alt=""
                     />
                   </a>
                 </div>
                 <div class="details-cart">
-                  <a href="">${listCartLocal[i].nameMeal}</a>
-                  <p>${listCartLocal[i].currentPrice.toLocaleString()} ₫</p>
-                  <div class="quantity-group">
+                  <a href="">${productsCartLocal[i].productName}</a>
+                  <p>${productsCartLocal[
+                    i
+                  ].discountPrice.toLocaleString()} ₫</p>
+                  <div class="quantity-group flex">
                     <button onclick="changeQuantity(${i},${
-        listCartLocal[i].quantity - 1
+        productsCartLocal[i].quantity - 1
       })" class="quantity-btn">-</button>
-                    <p id="quantity">${listCartLocal[i].quantity}</p>
+                    <p id="quantity">${productsCartLocal[i].quantity}</p>
                     <button onclick="changeQuantity(${i},${
-        listCartLocal[i].quantity + 1
+        productsCartLocal[i].quantity + 1
       })" class="quantity-btn">+</button>
                   </div>
                   <div><i onclick="delCart(${i})" class="fa-solid fa-trash"></i></div>
                 </div>
       `;
-      totalCart = totalCart + listCartLocal[i].quantity;
+      totalCart = totalCart + productsCartLocal[i].quantity;
       totalPrice =
-        totalPrice + listCartLocal[i].currentPrice * listCartLocal[i].quantity;
+        totalPrice +
+        productsCartLocal[i].discountPrice * productsCartLocal[i].quantity;
     }
   }
   quantityCart.innerHTML = totalCart;
   priceCart.innerHTML = totalPrice.toLocaleString() + " ₫";
   ulCart.innerHTML = liCart;
-  localStorage.setItem("list_cart", JSON.stringify(listCartLocal));
+  localStorage.setItem("FFproductsCart", JSON.stringify(productsCartLocal));
 }
 renderCart();
 
 // ADD ITEMS TO CART
-function addCart(index) {
-  if (listCartLocal[index] == null) {
-    listCartLocal[index] = { ...listMealLocal[index], quantity: 1 };
+function addCart(id) {
+  let productsLocal = JSON.parse(localStorage.getItem("FFproducts")) || [];
+
+  let index = productsLocal.findIndex((pro) => pro.productId == id);
+  if (productsCartLocal[index] == null) {
+    productsCartLocal[index] = { ...productsLocal[index], quantity: 1 };
   } else {
-    listCartLocal[index].quantity += 1;
+    productsCartLocal[index].quantity += 1;
   }
   renderCart();
 }
@@ -252,14 +158,14 @@ function addCart(index) {
 function changeQuantity(index, newQuantity) {
   if (newQuantity <= 0) {
   } else {
-    listCartLocal[index].quantity = newQuantity;
+    productsCartLocal[index].quantity = newQuantity;
   }
   renderCart();
 }
 
 // DELETE CART
 function delCart(index) {
-  listCartLocal.splice(index, 1);
+  productsCartLocal.splice(index, 1);
   renderCart();
 }
 
@@ -274,97 +180,38 @@ function addFavorite(index) {
   }
 }
 
-// ======================
-// SIGN OUT
-
-// OPEN SIGN OUT
-overlay.addEventListener("click", (e) => {
-  e.stopPropagation();
-});
-signOut.addEventListener("click", (e) => {
-  e.preventDefault();
-  overlay.classList.add("openOverlay");
-});
-// OK
-btnOK.addEventListener("click", () => {
-  window.location.href = "../SignIn.html";
-});
-// CANCEL
-btnCancel.addEventListener("click", (e) => {
-  overlay.classList.remove("openOverlay");
-});
-
-// ==============
-// LANGUAGE AND DOWNLOAD
-const headerLanguage = document.querySelector(".header__language");
-const headerDownloadApp = document.querySelector(".header__downloadApp");
-const languageInner = document.querySelector(".header__language__inner");
-const downloadInner = document.querySelector(".header__downloadApp__inner");
-// OPEN+CLOSE
-headerLanguage.addEventListener("click", (e) => {
-  e.stopPropagation();
-  if (!languageInner.classList.contains("open__inner")) {
-    languageInner.classList.add("open__inner");
-  } else {
-    languageInner.classList.remove("open__inner");
-  }
-});
-
-headerDownloadApp.addEventListener("click", (e) => {
-  e.stopPropagation();
-  if (!downloadInner.classList.contains("open__inner")) {
-    downloadInner.classList.add("open__inner");
-  } else {
-    downloadInner.classList.remove("open__inner");
-  }
-});
-
-window.addEventListener("click", () => {
-  languageInner.classList.remove("open__inner");
-  downloadInner.classList.remove("open__inner");
-});
-
 // ===========================
-// SLIDE CATEGORY
-const menuDot = document.querySelector(".menu__switch");
-const ulCategory = document.querySelector(".menu__list");
-
-const arr = [
-  { name: "Bestseller", image: "Bestseller.jpg" },
-  { name: "Promotion", image: "Promotion.jpg" },
-  { name: "Drinks", image: "Drinks.jpg" },
-  { name: "Side", image: "Side.jpg" },
-  { name: "Rice & Spaghetti", image: "Rice & Spaghetti.jpg" },
-  { name: "Pack", image: "Pack.jpg" },
-  { name: "Value", image: "Value.jpg" },
-  { name: "Combo", image: "Combo.jpg" },
-  { name: "Chicken Set", image: "Chicken Set.jpg" },
-  { name: "New Item 1", image: "Bestseller.jpg" },
-  { name: "New Item 2", image: "Side.jpg" },
-];
+// RENDER CATEGORY
+const menuDot = document.querySelector(".category__dot");
+const ulCategory = document.querySelector(".category__list");
+let categoryChoose = null;
 
 let pageSize = 9;
 let totalPage = 1;
 let currentPage = 1;
 let currentItem = 0;
 
-// MOVEPAGE
+// MOVE DOT
 function moveDot(index) {
   currentPage = index;
-  renderMenu();
+  renderCategory();
 }
 
-function renderMenu(data) {
-  // let usersLocal = JSON.parse(localStorage.getItem("FFusers")) || [];
+let categoriesLocal = JSON.parse(localStorage.getItem("FFcategories")) || [];
+categoryChoose = categoriesLocal[0].categoryId;
 
-  // if (Array.isArray(data)) {
-  //   usersLocal = data;
-  // }
-  totalPage = Math.ceil(arr.length / pageSize);
+function renderCategory(data) {
+  let categoriesLocal = JSON.parse(localStorage.getItem("FFcategories")) || [];
+
+  if (Array.isArray(data)) {
+    categoriesLocal = data;
+  }
+
+  totalPage = Math.ceil(categoriesLocal.length / pageSize);
   let dot = "";
   for (let i = 1; i <= totalPage; i++) {
     if (currentPage == i) {
-      dot += `<span onclick="moveDot(${i})" class="active__switch"></span>`;
+      dot += `<span onclick="moveDot(${i})" class="active__dot"></span>`;
     } else {
       dot += `<span onclick="moveDot(${i})"></span>`;
     }
@@ -377,9 +224,9 @@ function renderMenu(data) {
   end = pageSize * currentPage - 1;
 
   let liHtml = "";
-  if (arr.length - 1 <= end) {
-    end = arr.length - 1;
-    start = end - pageSize;
+  if (categoriesLocal.length - 1 <= end) {
+    end = categoriesLocal.length - 1;
+    start = end - (pageSize - 1);
     if (start < 0) {
       start = 0;
     }
@@ -387,14 +234,24 @@ function renderMenu(data) {
 
   for (let i = start; i <= end; i++) {
     liHtml += `
-    <li class="menu__list_item ${currentItem === i ? "active-item" : ""}" >
+    <li 
+      onclick="moveCat(${
+        categoriesLocal[i].categoryId
+      })" class="category__list__items" 
+    >
       <a>
         <img
-          class="active-menu"
-          src="../../ASSET/IMAGE/CATEGORY/${arr[i].image}"
+          class=" ${
+            categoryChoose == categoriesLocal[i].categoryId
+              ? "active-border"
+              : ""
+          }"
+          src="../../ASSET/IMAGE/CATEGORY/${categoriesLocal[i].image}"
           alt=""
         />
-        <h4 class="active-h4">${arr[i].name}</h4>
+        <h4 class="category__list__items-name ${
+          categoryChoose == categoriesLocal[i].categoryId ? "active-name" : ""
+        }">${categoriesLocal[i].categoryName}</h4>
       </a>
     </li>
     `;
@@ -402,4 +259,73 @@ function renderMenu(data) {
   ulCategory.innerHTML = liHtml;
 }
 
-renderMenu();
+// =====================
+// RENDER PRODUCT
+const ulMain = document.querySelector(".product");
+function renderProduct(data) {
+  let productsLocal = JSON.parse(localStorage.getItem("FFproducts")) || [];
+
+  if (Array.isArray(data)) {
+    productsLocal = data;
+  }
+
+  let liHtml = "";
+  for (let i = 0; i < productsLocal.length; i++) {
+    liHtml += `
+        <li  class="product__item">
+        <div class="product__item__photo">
+          <a href="./Detail_Product.html">
+            <img
+              src="../../ASSET/IMAGE/PRODUCT/${productsLocal[i].image}"
+              alt=""
+            />
+          </a>
+          <i onclick="addFavorite(${i})" class="fa-regular fa-heart"></i>
+        </div>
+        <div class="product__item__content">
+          <h3 class="name__item">
+            <a href="">${productsLocal[i].productName}</a>
+          </h3>
+          <div class="product__item__detals">
+            <p>${productsLocal[i].details[0] || ""}</p>
+            <p>${productsLocal[i].details[1] || ""}</p>
+          </div>
+          <div class="product__item__price">
+            <p>${productsLocal[i].discountPrice.toLocaleString()} ₫</p>
+            ${
+              productsLocal[i].price.toLocaleString() != 0
+                ? `<p>
+              <span>${productsLocal[i].price.toLocaleString()} ₫</span>
+            </p>`
+                : ""
+            }
+          </div>
+          <div class="product__item__btn">
+            <button style="width: 100%" onclick="addCart(${
+              productsLocal[i].productId
+            })" class="btn-cart">Add to cart</button>
+          </div>
+        </div>
+      </li>;
+        `;
+  }
+
+  ulMain.innerHTML = liHtml;
+}
+
+// renderProduct();
+
+// renderCategory();
+
+// =======================
+// RENDER PRODUCT WITH CATEGORY
+
+function moveCat(id) {
+  let productsLocal = JSON.parse(localStorage.getItem("FFproducts")) || [];
+  let productFilter = productsLocal.filter((pro) => pro.categoryName == id);
+  categoryChoose = id;
+  renderCategory();
+  renderProduct(productFilter);
+}
+
+moveCat(categoryChoose);

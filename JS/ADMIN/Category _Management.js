@@ -1,20 +1,38 @@
-const openModal = document.querySelector("#openModal");
-const closeModals = document.querySelectorAll("#closeModal");
-const formModal = document.querySelector(".modal__form");
-const formAdd = document.querySelector(".formAdd");
+// OPEN + CLOSE FORM ADD
+const openForm = document.querySelector("#openForm");
+const closeForms = document.querySelectorAll("#closeForm");
+const formAddmodal = document.querySelector(".formAddmodal");
+const formAddOverlay = document.querySelector(".formAddOverlay");
 const submitForm = document.querySelector("#submitForm");
 
-// OPEN/CLOSE MODAL
-openModal.addEventListener("click", () => {
-  formAdd.classList.add("open-modal");
+openForm.addEventListener("click", () => {
+  formAddOverlay.classList.toggle("hidden");
 });
 
-closeModals.forEach((closeModal) => {
-  closeModal.addEventListener("click", () => {
-    formAdd.classList.remove("open-modal");
+closeForms.forEach((closeForm) => {
+  closeForm.addEventListener("click", () => {
     resetForm();
   });
 });
+
+// =====================
+// OPEN + CLOSE SUBACCOUNT
+const settingDown = document.querySelector(".fa-chevron-down");
+const subAccount = document.querySelector(".sub__menu__account");
+
+settingDown.addEventListener("click", (e) => {
+  e.stopPropagation();
+  subAccount.classList.toggle("hidden");
+});
+
+subAccount.addEventListener("click", (e) => {
+  e.stopPropagation();
+});
+
+window.addEventListener("click", () => {
+  subAccount.classList.add("hidden");
+});
+
 // SUBMIT FORM
 const categoryName = document.querySelector("#categoryName");
 const imageInput = document.querySelector("#imageInput");
@@ -65,18 +83,19 @@ btnSearch.addEventListener("click", () => {
   renderCategory(categoriesFilter);
 });
 
-formModal.addEventListener("submit", (e) => {
+formAddmodal.addEventListener("submit", (e) => {
   e.preventDefault();
   let isEmpty = checkEmpty([categoryName, imageInput]);
   if (isEmpty) {
     let categories = {
       categoryId: Math.floor(Math.random() * 9999999999),
       categoryName: categoryName.value,
+      // image: imageBase64,
       image: imageInput.value,
       status: true,
     };
 
-    // EDIT OR ADD
+    // CHECK EDIT OR ADD
     if (isEdit) {
       categoriesLocal[editIndex].categoryName = categoryName.value;
       categoriesLocal[editIndex].image = imageInput.value;
@@ -87,18 +106,67 @@ formModal.addEventListener("submit", (e) => {
     renderCategory();
     resetForm();
   }
-  //   else {
-  //     alert("sai");
-  //   }
 });
+
+// // Nhập file ảnh chuyển đổi flie về ảnh dùng onchange="convertToBase64()
+// const imageProductHTML = document.getElementById("image-product");
+// let imageBase64 = null;
+
+// function convertToBase64() {
+//   const fileInput = document.getElementById("input-image");
+//   const file = fileInput.files[0];
+//   const reader = new FileReader(); //đọc data của 1 hình ảnh
+
+//   reader.onload = function (e) {
+//     const base64 = e.target.result;
+//     imageBase64 = base64;
+//     imageProductHTML.src = imageBase64;
+//   };
+//   reader.readAsDataURL(file);
+// }
+
+// DELETE CATEGORY
+function Del(id) {
+  let categoriesLocal = JSON.parse(localStorage.getItem("FFcategories")) || [];
+  let index = categoriesLocal.findIndex((cat) => cat.categoryId == id);
+  if (confirm("Do you want to delete?")) {
+    categoriesLocal.splice(index, 1);
+    localStorage.setItem("FFcategories", JSON.stringify(categoriesLocal));
+    renderCategory();
+  }
+}
+
+// EDIT CATEGORY
+function Edit(id) {
+  let categoriesLocal = JSON.parse(localStorage.getItem("FFcategories")) || [];
+  const index = categoriesLocal.findIndex((item) => item.categoryId === id);
+  formAddOverlay.classList.toggle("hidden");
+  categoryName.value = categoriesLocal[index].categoryName;
+  imageInput.value = categoriesLocal[index].image;
+  submitForm.innerHTML = "Edit";
+  isEdit = true;
+  editIndex = index;
+}
+
+// CHANGE ACTIVE/BLOCK
+
+function changeStatus(id) {
+  let categoriesLocal = JSON.parse(localStorage.getItem("FFcategories")) || [];
+  const index = categoriesLocal.findIndex((item) => item.categoryId === id);
+  categoriesLocal[index].status = !categoriesLocal[index].status;
+  localStorage.setItem("FFcategories", JSON.stringify(categoriesLocal));
+  renderCategory();
+}
 
 // RESET FORM
 function resetForm() {
   isEdit = false;
   submitForm.innerHTML = "Add";
   categoryName.value = "";
+  // imageProductHTML.src = "";
+  // imageBase64 = null;
   imageInput.value = "";
-  formAdd.classList.remove("open-modal");
+  formAddOverlay.classList.toggle("hidden");
 }
 
 // DEVICE PAGE
@@ -158,13 +226,13 @@ function renderCategory(data) {
                     <td>20/05/2024</td>
                     <td><button onclick="Edit(${
                       categoriesLocal[i].categoryId
-                    })">Edit</button></td>
-                    <td><button onclick="changeStatus(${
+                    })">Edit</button>
+                    <button onclick="changeStatus(${
                       categoriesLocal[i].categoryId
                     })">${
       categoriesLocal[i].status ? "Block" : "Active"
-    }</button></td>
-                    <td><button onclick="Del(${
+    }</button>
+                    <button onclick="Del(${
                       categoriesLocal[i].categoryId
                     })">Delete</button></td>
                 </tr>
@@ -175,36 +243,27 @@ function renderCategory(data) {
 
 renderCategory();
 
-// DELETE SKILL
-function Del(index) {
-  if (confirm("Do you want to delete?")) {
-    skillsLocal.splice(index, 1);
-    renderCategory();
-  }
-}
+// SIGN OUT
+const btnCancel = document.querySelector("#btnCancel");
+const btnOK = document.querySelector("#btnOK");
+const signOutOverlay = document.querySelector(".signOutOverlay");
+const signOut = document.querySelector("#signOut");
 
-// EDIT SKILL
-function Edit(id) {
-  let categoriesLocal = JSON.parse(localStorage.getItem("FFcategories")) || [];
-  const index = categoriesLocal.findIndex((item) => item.categoryId === id);
+signOutOverlay.addEventListener("click", (e) => {
+  e.stopPropagation();
+});
 
-  formAdd.classList.add("open-modal");
-  categoryName.value = categoriesLocal[index].categoryName;
-  imageInput.value = categoriesLocal[index].image;
-  submitForm.innerHTML = "Edit";
-  isEdit = true;
-  editIndex = index;
-}
+signOut.addEventListener("click", (e) => {
+  signOutOverlay.classList.toggle("hidden");
+});
 
-// CHANGE ACTIVE/BLOCK
+btnOK.addEventListener("click", () => {
+  window.location.href = "../SignIn.html";
+});
 
-function changeStatus(id) {
-  let categoriesLocal = JSON.parse(localStorage.getItem("FFcategories")) || [];
-  const index = categoriesLocal.findIndex((item) => item.categoryId === id);
-  categoriesLocal[index].status = !categoriesLocal[index].status;
-  localStorage.setItem("FFcategories", JSON.stringify(categoriesLocal));
-  renderCategory();
-}
+btnCancel.addEventListener("click", (e) => {
+  signOutOverlay.classList.toggle("hidden");
+});
 
 // CHANGE PAGE
 function changePage() {}

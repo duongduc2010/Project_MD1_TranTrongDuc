@@ -1,23 +1,3 @@
-// function renderPaginations(products) {
-//   totalPage = Math.ceil(products.length / pageSize); //làm trên lên
-//   let stringHTML = "";
-//   for (let i = 1; i <= totalPage; i++) {
-//     if (currentPage === i) {
-//       stringHTML += `
-//             <span class="page-item page-active" onclick="clickPage(${i})">${i}</span>
-//             `;
-//     } else {
-//       stringHTML += `
-//             <span class="page-item " onclick="clickPage(${i})">${i}</span>
-//             `;
-//     }
-//   }
-//   pageList.innerHTML = stringHTML;
-// }
-
-// realusers = renderPaginations(realProducts);
-
-// SUBMIT FORM
 const tbody = document.querySelector("tbody");
 let usersLocal = JSON.parse(localStorage.getItem("FFusers")) || [];
 
@@ -65,7 +45,7 @@ function renderAccount(data) {
     trHtml += `
     <tr>
     <td>${i + 1}</td>
-                    <td></td>
+                    <td>${usersLocal[i].username}</td>
                     <td>${usersLocal[i].email}</td>
                     <td>${usersLocal[i].status ? "Active" : "Block"}</td>
                     <td>20/05/2024</td>
@@ -91,7 +71,6 @@ btnSearch.addEventListener("click", () => {
   userFilter = usersLocal.filter((item) =>
     item.email.toLowerCase().includes(contentSearch)
   );
-  console.log(userFilter);
   renderAccount(userFilter);
 });
 
@@ -109,47 +88,41 @@ function changeStatus(id) {
 function changePage() {}
 
 // =====================
-// SUBACCOUNT
+// OPEN + CLOSE SUBACCOUNT
 const settingDown = document.querySelector(".fa-chevron-down");
 const subAccount = document.querySelector(".sub__menu__account");
 
-// OPEN SUBACCOUNT
 settingDown.addEventListener("click", (e) => {
   e.stopPropagation();
-  if (!subAccount.classList.contains("open-subaccount")) {
-    subAccount.classList.add("open-subaccount");
-  } else {
-    subAccount.classList.remove("open-subaccount");
-  }
+  subAccount.classList.toggle("hidden");
 });
-// CLOSE SUBACCOUNT
+
 subAccount.addEventListener("click", (e) => {
   e.stopPropagation();
 });
 
 window.addEventListener("click", () => {
-  subAccount.classList.remove("open-subaccount");
+  subAccount.classList.add("hidden");
 });
 
-// ======================
 // SIGN OUT
-const btnCancel = document.querySelector("#js-btnCancel");
-const btnOK = document.querySelector("#js-btnOK");
-const overlay = document.querySelector(".overlay");
+const btnCancel = document.querySelector("#btnCancel");
+const btnOK = document.querySelector("#btnOK");
+const signOutOverlay = document.querySelector(".signOutOverlay");
 const signOut = document.querySelector("#signOut");
-// OPEN SIGN OUT
-overlay.addEventListener("click", (e) => {
+
+signOutOverlay.addEventListener("click", (e) => {
   e.stopPropagation();
 });
+
 signOut.addEventListener("click", (e) => {
-  e.preventDefault();
-  overlay.classList.add("openOverlay");
+  signOutOverlay.classList.toggle("hidden");
 });
-// OK
+
 btnOK.addEventListener("click", () => {
   window.location.href = "../SignIn.html";
 });
-// CANCEL
+
 btnCancel.addEventListener("click", (e) => {
-  overlay.classList.remove("openOverlay");
+  signOutOverlay.classList.toggle("hidden");
 });

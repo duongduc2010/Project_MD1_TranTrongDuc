@@ -20,6 +20,7 @@
     
     a{
         text-decoration: none;
+        cursor: pointer;
     }
     
     ul{
@@ -28,4 +29,13 @@
     
     img{
         object-fit: cover;
+    }
+
+    .flex{
+        display: flex;
+        align-items: center;
+    }
+
+    .hidden{
+        display: none !important;
     }

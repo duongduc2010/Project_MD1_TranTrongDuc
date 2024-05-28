@@ -17,13 +17,13 @@
       href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="../../CSS/USER/Main.css" />
+    <link rel="stylesheet" href="../../CSS/USER/Personal.css" />
   </head>
   <body>
     <!-- HEADER -->
 
-    <header class="header" id="Header">
-      <div class="header__left">
+    <header class="header flex" id="Header">
+      <div class="header__left flex">
         <div class="header__logo">
           <a href="">
             <img
@@ -34,9 +34,9 @@
           </a>
         </div>
 
-        <ul class="header__left__nav">
+        <ul class="header__left__nav flex">
           <li>
-            <a class="" href="./Index.html">BESTSELLER</a>
+            <a href="./Index.html">BESTSELLER</a>
           </li>
           <li><a href="">ODER</a></li>
           <li><a href="">DISCOUNT</a></li>
@@ -44,7 +44,7 @@
         </ul>
       </div>
       <div class="header__right">
-        <div class="header__right__up">
+        <div class="header__right__up flex">
           <div class="header__language">
             <img
               class="header__img-s"
@@ -54,7 +54,7 @@
             />
             English
             <i class="fa-solid fa-caret-down icon__language"></i>
-            <div class="header__language__inner">
+            <div class="header__language__inner hidden">
               <img
                 class="header__img-s"
                 src="https://www.lotteria.vn/grs-static/images/icon-vn.svg"
@@ -73,7 +73,7 @@
               alt="Lotteria"
             />
             Download App
-            <div class="header__downloadApp__inner">
+            <div class="header__downloadApp__inner hidden">
               <a href="">
                 <img
                   class="header__img-s"
@@ -92,23 +92,17 @@
           </div>
         </div>
 
-        <ul class="header__right__down">
+        <ul class="header__right__down flex">
           <li class="header__right__down__location">
             <a href="">
-              <img
-                src="https://www.lotteria.vn/grs-static/images/icon-pos-2.svg"
-                alt=""
-              />
+              <img src="../../ASSET/IMAGE/ICON/icon-pos-2.svg" alt="" />
             </a>
           </li>
           <li class="header__right__down__account" id="accountIcon">
             <a>
-              <img
-                src="https://www.lotteria.vn/grs-static/images/icon-myaccount.svg"
-                alt=""
-              />
+              <img src="../../ASSET/IMAGE/ICON/icon-myaccount.svg" alt="" />
             </a>
-            <ul class="sub__menu__account">
+            <ul class="sub__menu__account hidden">
               <li>
                 <a href="./AccInfor.html">
                   <img
@@ -155,7 +149,7 @@
                 >
               </li>
               <li id="signOut">
-                <a href="">
+                <a>
                   <img
                     src="https://www.lotteria.vn/grs-static/images/icon-logout.svg"
                     alt=""
@@ -167,45 +161,18 @@
           </li>
           <li class="header__right__down__notify">
             <a href="">
-              <img
-                src="https://www.lotteria.vn/grs-static/images/icon-notification.svg"
-                alt=""
-              />
+              <img src="../../ASSET/IMAGE/ICON/icon-notification.svg" alt="" />
             </a>
           </li>
           <li class="header__right__down__cart" id="cartIcon">
-            <a href="">
-              <img
-                src="https://www.lotteria.vn/grs-static/images/icon-cart.svg"
-                alt=""
-              />
+            <a>
+              <img src="../../ASSET/IMAGE/ICON/icon-cart.svg" alt="" />
             </a>
             <div class="quantity-cart">0</div>
           </li>
         </ul>
       </div>
     </header>
-
-    <!-- CART -->
-    <div class="cart-overlay">
-      <div class="cart">
-        <strong>Cart</strong>
-        <article class="cart__content">
-          <ul id="ulCart">
-            <!-- DATA LOCAL -->
-          </ul>
-        </article>
-        <footer class="cart__footer">
-          <div class="totalPrice">
-            <strong>Total</strong>
-            <p id="totalPrice">0 ₫</p>
-          </div>
-          <div class="payment">
-            <a href="">PAYMENT</a>
-          </div>
-        </footer>
-      </div>
-    </div>
 
     <!-- MAIN -->
 
@@ -358,9 +325,10 @@
     </main>
 
     <!-- FOOTER -->
+
     <footer class="footer">
       <div class="footer__container">
-        <div class="footer__container__subscribe">
+        <div class="footer__container__subscribe flex">
           <div class="footer__logo">
             <img
               src="https://www.lotteria.vn/grs-static/images/lotteria_logo.svg"
@@ -446,21 +414,43 @@
     </footer>
 
     <!-- CONFIRM SIGN OUT -->
-    <div class="overlay">
-      <div class="signout">
+    <div class="signOutOverlay flex hidden">
+      <div class="signOutModal">
         <img
           src="https://www.lotteria.vn/grs-static/images/illus-4.png"
           alt=""
         />
         <p>Want to sign out?</p>
-        <div class="signout__confirm">
-          <button class="signout__confirm-cancel" id="js-btnCancel">
+        <div class="signOutModal__confirm">
+          <button class="signOutModal__confirm-cancel" id="btnCancel">
             Cancel
           </button>
-          <button class="signout__confirm-ok" id="js-btnOK">OK</button>
+          <button class="signOutModal__confirm-ok" id="btnOK">OK</button>
         </div>
       </div>
     </div>
+
+    <!-- CART -->
+    <div class="cartOverlay flex hidden">
+      <div class="cartModal">
+        <strong>Cart</strong>
+        <article class="cart__content">
+          <ul id="ulCart">
+            <!-- data local -->
+          </ul>
+        </article>
+        <footer class="cart__footer">
+          <div class="totalPrice flex">
+            <strong>Total</strong>
+            <p id="totalPrice">0 ₫</p>
+          </div>
+          <div class="payment">
+            <a href="">PAYMENT</a>
+          </div>
+        </footer>
+      </div>
+    </div>
+
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="../../JS/USER/Account_Information.js"></script>
   </body>

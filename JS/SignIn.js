@@ -1,6 +1,4 @@
-const accountIcon = document.querySelector("#accountIcon");
-const formSignIn = document.querySelector(".signIn");
-const modalSignIn = document.querySelector(".modal-signIn");
+const signInModal = document.querySelector(".signInModal");
 const userInput = document.querySelector("#userInput");
 const passwordInput = document.querySelector("#passwordInput");
 const ShowPassword = document.querySelector("#ShowPassword");
@@ -19,7 +17,7 @@ ShowPassword.addEventListener("click", () => {
 });
 
 // EVENT SUBMIT FORM
-formSignIn.addEventListener("submit", (e) => {
+signInModal.addEventListener("submit", (e) => {
   e.preventDefault();
   let usersLocal = JSON.parse(localStorage.getItem("FFusers")) || [];
   console.log(usersLocal);
@@ -33,7 +31,11 @@ formSignIn.addEventListener("submit", (e) => {
   for (let i = 0; i < usersLocal.length; i++) {
     let user = usersLocal[i];
     // USER ACCOUNT
-    if (userInput.value == user.email && passwordInput.value == user.password) {
+    if (
+      userInput.value == user.email &&
+      passwordInput.value == user.password &&
+      user.status == true
+    ) {
       // CURRENT ACCOUNT
       let currentAccountLocal =
         JSON.parse(localStorage.getItem("current_accout")) || [];
@@ -54,9 +56,6 @@ formSignIn.addEventListener("submit", (e) => {
       flag = true;
       break;
     }
-    // else {
-    //   flag = false;
-    // }
   }
 
   if (flag) {
