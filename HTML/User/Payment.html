@@ -54,74 +54,11 @@
       <div class="main__left">
         <section class="main__left__cart">
           <header class="flex">
-            <h2>YOUR CART (X ITEM)</h2>
+            <h2>YOUR CART</h2>
             <button>Add more</button>
           </header>
           <ul class="main__left__cart__content">
-            <li class="list-cart flex">
-              <div class="item-cart-left flex">
-                <img src="../../ASSET/IMAGE/PRODUCT/Bulgogi Combo.png" alt="" />
-                <div class="item-cart-infor">
-                  <h3 style="color: var(--color-theme)" class="item-cart-name">
-                    FOOD1
-                  </h3>
-                  <span class="item-cart-price">82.000</span>
-                </div>
-              </div>
-              <div class="item-cart-right flex">
-                <div class="quantity-group flex">
-                  <button
-                    onclick="changeQuantity(
-        )"
-                    class="quantity-btn"
-                  >
-                    -
-                  </button>
-                  <p id="quantity">total</p>
-                  <button
-                    onclick="changeQuantity(
-        )"
-                    class="quantity-btn"
-                  >
-                    +
-                  </button>
-                </div>
-                <i style="font-size: 22px" class="fa-regular fa-trash-can"></i>
-              </div>
-            </li>
-            <li class="list-cart flex">
-              <div class="item-cart-left flex">
-                <img src="../../ASSET/IMAGE/PRODUCT/Bulgogi Combo.png" alt="" />
-                <div class="item-cart-infor">
-                  <h3 style="color: var(--color-theme)" class="item-cart-name">
-                    FOOD1
-                  </h3>
-                  <span class="item-cart-price">82.000</span>
-                </div>
-              </div>
-              <div class="item-cart-right flex">
-                <div class="quantity-group flex">
-                  <button
-                    onclick="changeQuantity(
-          )"
-                    class="quantity-btn"
-                  >
-                    -
-                  </button>
-                  <p id="quantity">total</p>
-                  <button
-                    onclick="changeQuantity(
-          )"
-                    class="quantity-btn"
-                  >
-                    +
-                  </button>
-                </div>
-
-                <!-- <div class="item-cart-quantity"></div> -->
-                <i style="font-size: 22px" class="fa-regular fa-trash-can"></i>
-              </div>
-            </li>
+            <!-- data local -->
           </ul>
         </section>
         <section></section>
@@ -142,12 +79,12 @@
         <section class="bill">
           <div class="total-price flex">
             <span>SubTotal</span>
-            <span>100.000 </span>
+            <span id="totalPrice">100.000 </span>
           </div>
           <div class="border-dot"></div>
           <div class="total-price flex">
             <h3>Total</h3>
-            <h3>100.000</h3>
+            <h3 id="totalPrice">100.000</h3>
           </div>
           <div class="btn-continue">
             <a href="./Finish.html">Continue</a>
@@ -244,27 +181,6 @@
         <strong> © 2022 Lotteria All Rights Reserved</strong>Site by LDCC
       </div>
     </footer>
-
-    <!-- CART -->
-    <div class="cartOverlay flex hidden">
-      <div class="cartModal">
-        <strong>Cart</strong>
-        <article class="cart__content">
-          <ul id="ulCart">
-            <!-- data local -->
-          </ul>
-        </article>
-        <footer class="cart__footer">
-          <div class="totalPrice flex">
-            <strong>Total</strong>
-            <p id="totalPrice">0 ₫</p>
-          </div>
-          <div class="payment">
-            <a href="">PAYMENT</a>
-          </div>
-        </footer>
-      </div>
-    </div>
 
     <script src="../../JS/USER/Payment.js"></script>
   </body>

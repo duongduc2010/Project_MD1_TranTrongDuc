@@ -5,6 +5,8 @@ const ulProduct = document.querySelector(".product");
 let productsLocal = JSON.parse(localStorage.getItem("FFproducts")) || [];
 let productsCartLocal =
   JSON.parse(localStorage.getItem("FFproductsCart")) || [];
+let accountActive = JSON.parse(localStorage.getItem("FFaccountActive")) || [];
+
 // ===========================
 // RENDER CATEGORY
 

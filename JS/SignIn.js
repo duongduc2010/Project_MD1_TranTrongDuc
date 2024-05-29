@@ -2,6 +2,8 @@ const signInModal = document.querySelector(".signInModal");
 const userInput = document.querySelector("#userInput");
 const passwordInput = document.querySelector("#passwordInput");
 const ShowPassword = document.querySelector("#ShowPassword");
+// let accountActiveLocal =
+//   JSON.parse(localStorage.getItem("FFaccountActive")) || [];
 
 // SHOW PASSWORD
 ShowPassword.addEventListener("click", () => {
@@ -20,7 +22,6 @@ ShowPassword.addEventListener("click", () => {
 signInModal.addEventListener("submit", (e) => {
   e.preventDefault();
   let usersLocal = JSON.parse(localStorage.getItem("FFusers")) || [];
-  console.log(usersLocal);
   let flag = false;
   //   CHECK THE ACCOUNT
   // ADMIN ACCOUNT
@@ -37,22 +38,23 @@ signInModal.addEventListener("submit", (e) => {
       user.status == true
     ) {
       // CURRENT ACCOUNT
-      let currentAccountLocal =
-        JSON.parse(localStorage.getItem("current_accout")) || [];
-      let currentAccount = {
-        emailCurrent: user.email,
-        passwordCurrent: user.password,
-        fullName: "",
-        dob: "",
-        phoneNumber: "",
-      };
+      // let accountActiveLocal =
+      //   JSON.parse(localStorage.getItem("FFaccountActive")) || [];
 
-      currentAccountLocal.push(currentAccount);
+      // let accountActive = {
+      //   emailCurrent: user.email,
+      //   passwordCurrent: user.password,
+      //   fullName: user.fullName,
+      //   dob: "",
+      //   phoneNumber: "",
+      // };
 
-      localStorage.setItem(
-        "current_account",
-        JSON.stringify(currentAccountLocal)
+      // accountActiveLocal.push(accountActive);
+      const accountActive = usersLocal.find(
+        (user) =>
+          user.email == userInput.value && user.password == passwordInput.value
       );
+      localStorage.setItem("FFaccountActive", JSON.stringify(accountActive));
       flag = true;
       break;
     }

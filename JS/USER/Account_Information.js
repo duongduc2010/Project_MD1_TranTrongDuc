@@ -164,16 +164,17 @@ function delCart(index) {
 // ================================================
 // RENDER ACCOUNT INFORMATION
 let mainContentAccount = document.querySelector(".container");
-let currentAccountLocal = JSON.parse(localStorage.getItem("current_account"));
+let accountActive = JSON.parse(localStorage.getItem("FFaccountActive"));
+console.log(accountActive);
 function renderAccount() {
   let content = "";
-  currentAccountLocal.forEach((element) => {
-    content += `
+  // accountActive.forEach((element) => {
+  content += `
     <article class="main__account">
       <div class="main__account__left">
         <div class="main__account__left__infor">
           <div class="main__account__left__ava">TD</div>
-          <h2>${element.fullName.toUpperCase()}</h2>
+          <h2>${accountActive.username.toUpperCase()}</h2>
           <p class="point-account">
             <img
               src="https://www.lotteria.vn/grs-static/images/icon-point.svg"
@@ -277,23 +278,25 @@ function renderAccount() {
               <div class="input-group">
                 <label for="">Fullname</label>
                 <input type="text" name="" id="fullName" value="${
-                  element.fullName
+                  accountActive.username
                 }" required/>
               </div>
               <div class="input-group">
                 <label for="">Date of birth</label>
-                <input type="date" name="" id="dob" value="${element.dob}"/>
+                <input type="date" name="" id="dob" value="${
+                  accountActive.dob
+                }"/>
               </div>
               <div class="input-group">
                 <label for="">Phone number</label>
-                <input type="text" name="" id="phoneNumber" value="${
-                  element.phoneNumber
-                }"/>
+                <input type="text" name="" id="phoneNumber" value="
+                  
+                "/>
               </div>
               <div class="input-group">
                 <label for="">Email</label>
                 <input type="email" name="" id="" value="${
-                  element.emailCurrent
+                  accountActive.email
                 }"/>
               </div>
             </section>
@@ -302,7 +305,7 @@ function renderAccount() {
               <div class="input-group">
                 <label for="">Old password</label>
                 <input type="password" name="" id="" value="${
-                  element.passwordCurrent
+                  accountActive.password
                 }"/>
               </div>
               <div class="input-group">
@@ -323,10 +326,10 @@ function renderAccount() {
       </div>
     </article>
     `;
-  });
+  // });
 
   mainContentAccount.innerHTML = content;
-  localStorage.setItem("current_account", JSON.stringify(currentAccountLocal));
+  // localStorage.setItem("current_account", JSON.stringify(currentAccountLocal));
 }
 renderAccount();
 
@@ -335,13 +338,11 @@ let formAccount = document.querySelector(".formAccount");
 let fullName = document.querySelector("#fullName");
 let dob = document.querySelector("#dob");
 let phoneNumber = document.querySelector("#phoneNumber");
-let test = 1;
 formAccount.addEventListener("submit", (e) => {
   e.preventDefault();
-  currentAccountLocal[0].fullName = fullName.value;
-  currentAccountLocal[0].dob = dob.value;
-  currentAccountLocal[0].phoneNumber = phoneNumber.value;
-  "asdsad".toUpperCase();
+  accountActive.username = fullName.value;
+  // accountActive.dob = dob.value;
+  // accountActive.phoneNumber = phoneNumber.value;
   Swal.fire({
     position: "center",
     icon: "success",

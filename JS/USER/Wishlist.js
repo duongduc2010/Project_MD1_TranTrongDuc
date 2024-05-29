@@ -101,7 +101,7 @@ function renderCart() {
                   <a href="">
                     <img
                       class=""
-                      src="../../ASSET/IMAGE/MEALLIST/${
+                      src="../../ASSET/IMAGE/PRODUCT/${
                         productsCartLocal[i].image
                       }"
                       alt=""
@@ -164,16 +164,18 @@ function delCart(index) {
 // ================================================
 // RENDER ACCOUNT INFORMATION
 let mainContentAccount = document.querySelector(".container");
-let currentAccountLocal = JSON.parse(localStorage.getItem("current_account"));
+// let currentAccountLocal = JSON.parse(localStorage.getItem("current_account"));
+let accountActive = JSON.parse(localStorage.getItem("FFaccountActive"));
+
 function renderAccount() {
   let content = "";
-  currentAccountLocal.forEach((element) => {
-    content += `
+  // currentAccountLocal.forEach((element) => {
+  content += `
     <article class="main__account">
       <div class="main__account__left">
         <div class="main__account__left__infor">
           <div class="main__account__left__ava">TD</div>
-          <h2>${element.fullName.toUpperCase()}</h2>
+          <h2>${accountActive.username.toUpperCase()}</h2>
           <p class="point-account">
             <img
               src="https://www.lotteria.vn/grs-static/images/icon-point.svg"
@@ -278,10 +280,9 @@ function renderAccount() {
       </div>
     </article>
     `;
-  });
+  // });
 
   mainContentAccount.innerHTML = content;
-  localStorage.setItem("current_account", JSON.stringify(currentAccountLocal));
 }
 renderAccount();
 
