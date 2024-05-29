@@ -50,7 +50,7 @@ function checkEmail(input) {
     showError(input, "Wrong format");
     return false;
   }
-  return checkLengthInput(input, "Email", 8, 15);
+  return checkLengthInput(input, "Email", 8, 20);
 }
 
 // CHECK LENGTH INPUT
@@ -94,7 +94,7 @@ signUpModal.addEventListener("submit", (e) => {
     passwordInput,
     cfPassword,
   ]);
-  const isNameValid = checkLengthInput(fullNameInput, "Password", 6, 12);
+  const isNameValid = checkLengthInput(fullNameInput, "Password", 6, 20);
   const isPasswordLengthValid = checkLengthInput(
     passwordInput,
     "Password",

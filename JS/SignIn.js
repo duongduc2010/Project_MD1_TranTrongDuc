@@ -25,7 +25,7 @@ signInModal.addEventListener("submit", (e) => {
   let flag = false;
   //   CHECK THE ACCOUNT
   // ADMIN ACCOUNT
-  if (userInput.value == "admin@123" && passwordInput.value == "123456789") {
+  if (userInput.value == "thandaubuoi@123" && passwordInput.value == "123456789") {
     // flag = true;
     return (window.location.href = "Admin/Account_Management.html");
   }
